@@ -2,12 +2,13 @@
 Raspberry Pi hack completed at Bitcamp 2015, a 36-hr hackathon hosted by the University of Maryland. 
 
 twitterbot.py was the file authored exclusively by scmilburn and drakeling.
-All other files were either from the roomba's parents, The Labroratory for Telecommunication Science, twython,
+All other files were either from the roomba's parents: The Labroratory for Telecommunication Science, twython,
 or various OS/apt-get installations.
 
-To access the roomba's ehternet directly, you must connect to the 10.99.99.0/24 network.
+To access the roomba's ethernet directly, you must connect to the 10.99.99.0/24 network.
 roomba's pi: 10.99.99.1
 roomba's webcam: 10.99.99.50
+[EDIT: I just realized this networking configuration will be OS install dependant, this is how it was set up for us]
 
 To run the twitterbot, simply type: twitter
 
