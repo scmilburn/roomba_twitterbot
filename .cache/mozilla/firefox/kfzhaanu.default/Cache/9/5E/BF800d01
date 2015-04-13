@@ -1,0 +1,516 @@
+$(function () {
+    //LIVE
+    function Call(xml) {
+        //var LCapt;
+        //LCapt = $(xml).find("fileName").text();
+        //var a = $("<a href='/snapPic/"+LCapt+"' target='_blank'></a>").get(0);
+        if (gVar.ip == "" || gVar.port * 1 == 0) return;
+        //var httpv=IFs==0?gVar.httpver:"http";
+        if (gVar.nUserRight >= 100) {
+            setCookie("snapcmd", "http://" + gVar.ip + ":" + gVar.port + "/snapshot.cgi?user=" + urlEncode(gVar.user) + "&pwd=" + urlEncode(gVar.passwd));
+        } else {
+            if (gVar.httpver == "https") {
+                setCookie("snapcmd", gVar.httpver + "://" + gVar.ip + ":" + mult_https_port[IFs] + "/cgi-bin/CGIProxy.fcgi?" + (urlEncode("usr=" + gVar.user + "&pwd=" + gVar.passwd + "&cmd=snapPicture")));
+            }
+            else {
+                setCookie("snapcmd", gVar.httpver + "://" + gVar.ip + ":" + gVar.port + "/cgi-bin/CGIProxy.fcgi?" + (urlEncode("usr=" + gVar.user + "&pwd=" + gVar.passwd + "&cmd=snapPicture")));
+            }
+        }
+        var a = $("<a href='/html/snap.html' target='_blank'></a>").get(0);
+        if ($.browser.msie) window.open(a);
+        else {
+            if (document.createEvent) {
+                var evObj = document.createEvent('MouseEvents')
+                evObj.initEvent('click', true, false)
+                a.dispatchEvent(evObj)
+            }
+            else if (document.createEventObject) {
+                a.fireEvent('onclick')
+            }
+        }
+    }
+    $("#LVCapture").click(function () {
+        Call();
+    })
+
+    $("#LVRcA").click(function () {
+        try { gDvr.Record(true); }
+        catch (e) { }
+    })
+    $("#LVRc").click(function () {
+        cutdownalarmrecord[IFs] = false;
+        try { gDvr.Record(false); }
+        catch (e) { }
+    })
+
+    $("#irOn").click(function () {
+        gVar.KCgi("cmd=openInfraLed");
+    })
+
+    $("#irOff").click(function () {
+        gVar.KCgi("cmd=closeInfraLed");
+    })
+
+    //回放页面事件处理	
+    //搜索按钮事件处理
+    if (gDvr.nPlatFormShowTag * 1 == 1) {
+        $("#plat_set").css("display", "block");
+    }
+    switch (lgCls.version) {
+        case "SWANN":
+            {
+                $("#net_mobile").css("display", "none");
+            }
+            break;
+        default:
+            {
+                $("#net_mobile").css("display", "block");
+            }
+            break;
+    }
+    var turnPage = false;
+    function SwitchRecordPage(){
+        turnPage = true;
+        $("#RcSearch").click();
+    }
+    $("#rcListT").attr("tPage", 0);
+    $("#rcListT").attr("page", 0);
+    $("#rcListT").attr("isNan", 0);
+    $("#RcSearch").click(function () {
+        if(turnPage == false){
+            $("#rcListT").attr("isNan", 0);
+            $("#rcListT").attr("page", 0);
+        }
+        turnPage = false;
+	    $("#serword").css("display", "");
+        var startT = 0;
+        var endT = 0;
+
+        var numT = $("#rcListT").attr("page") * 1;
+        var isNan = $("#rcListT").attr("isNan") * 1;
+        if ($("#leftretime").val() == 0) {
+            startT = 0;
+            endT = 0;
+        }
+        else if ($("#leftretime").val() == 1) {
+            var d = $("#calday").val().split("-")
+            var dateS = new Date();
+            dateS.setUTCFullYear(d[0], d[1] * 1 - 1, d[2]);
+            dateS.setUTCHours(0, 0, 0, 0);
+            startT = dateS.getTime() / 1000;
+
+            var dateE = new Date();
+            dateE.setUTCFullYear(d[0], d[1] - 1, d[2]);
+            dateE.setUTCHours(23, 59, 59, 0);
+            endT = dateE.getTime() / 1000;
+        }
+        else {
+            var calt = $("#calday").val().split("-");
+            var dateS = new Date();
+            dateS.setUTCFullYear(calt[0], calt[1] * 1 - 1, 1);
+            dateS.setUTCHours(0, 0, 0, 0);
+            startT = dateS.getTime() / 1000;
+            gVar.recordStartTime = startT;
+
+            var calte = 0;
+            if (calt[1] <= 7) {
+                if (calt[1] % 2 != 0) calte = 31; //calt[0] + "-" + calt[1] + "-" + 31;
+                else if (calt[1] % 2 == 0 && calt[1] != 2) calte = 30; //calt[0] + "-" + calt[1] + "-" + 30;
+                else {
+                    if (((calt[0] % 4 == 0 && calt[0] % 100 != 0) || calt[0] % 400 == 0)) calte = 29; //calt[0] + "-" + calt[1] + "-" + 29;
+                    else calte = 28; //calt[0] + "-" + calt[1] + "-" + 28;
+                }
+            }
+            else if (calt[1] > 7) {
+                if (calt[1] % 2 != 0) calte = 30; //calt[0] + "-" + calt[1] + "-" + 30;	
+                else calte = 31; //calt[0] + "-" + calt[1] + "-" + 31;
+            }
+
+            var datee = new Date();
+            datee.setUTCFullYear(calt[0], calt[1] * 1 - 1, calte);
+            datee.setUTCHours(23, 59, 59, 0);
+            endT = datee.getTime() / 1000;
+            gVar.recordEndTime = endT;
+        }
+        var rDir = $("#leftrepath").val();
+        $("#rcListT").attr("rDir", rDir);
+
+        RfParamCall(function (xml) {
+            $("#serword").css("display", "none");
+            //alert(xml);
+            var res = XmlParser("result", xml) * 1;
+            if (res != 0) {
+                ShowPaop(lg.get("IDS_TIPS"), lg.get("IDS_LEFT_SERTCHF"))
+            } else {
+                var total = XmlParser("totalCnt", xml) * 1;
+                gVar.totalRecord = total;
+                if (total <= 0) { $("#rcListT").empty(); $("#rcListM > div:first").empty(); $("#rcListM > div:last").empty(); ShowPaop(lg.get("IDS_TIPS"), lg.get("IDS_LEFT_NORECORD")); return; }
+                $("#rcListT, #rcListM").css("display", "");
+                var num = XmlParser("curCnt", xml);
+                var Page = ((total / 10) | 0) + ((total % 10 == 0) ? 0 : 1) - 1;
+                if (Page >= 0) {
+                    UI.FyHead("rcListM", ">div:first", ">div:last", Page, numT, isNan);
+                }
+                $("#rcListT").attr("tPage", Page);
+
+                var rcl;
+                $("#rcListT").empty();
+                var str = ' <thead height="20"><th width="34">NO.</th><th width="114">' + lg.get("IDS_LEFT_WNAME") + '</th><th>' + lg.get("IDS_TYPE") + '</th></thead>'
+                $("#rcListT").append(str);
+                gVar.recordPath.length = 0;
+                for (var i = 0; i < num; i++) {
+                    gVar.recordPath[i] = XmlParser("record" + i, xml);
+                    rcl = XmlParser("record" + i, xml).split("/");
+                    var rectyp = "";
+                    if (rcl[2].toLowerCase().indexOf("alarm") != -1) {
+                        rectyp = lg.get("IDS_LEFT_ARM");
+                    } else if (rcl[2].toLowerCase().indexOf("schedule") != -1) {
+                        rectyp = lg.get("IDS_LEFT_PLAN");
+                    } else if (rcl[2].toLowerCase().indexOf("normal") != -1) {
+                        rectyp = lg.get("IDS_LEFT_NOMAL");
+                    }
+
+                    str = '<tr><td>' + (i + numT * 10 + 1) + '</td><td title=' + rcl[2] + '><div>' + rcl[2].substring(0, 8) + "..." + rcl[2].substring(rcl[2].length - 8, rcl[2].length) + '</div></td><td>' + rectyp + '</td></tr>';
+                    $("#rcListT").append(str);
+                }
+            }
+        }, "", "getRecordList2&recordPath=" + rDir + "&startTime=" + startT + "&endTime=" + endT + "&recordType=" + $("#pbRcType").val() + "&startNo=" + numT * 10);
+
+
+    })
+
+    $("#RcReload").click(function () {
+        RfParamCall(function (xml) {
+            if (XmlParser("result", xml) * 1 == 0) {
+                setTimeout(function () {
+                    var b = document.getElementById("MaskLayout");
+                    b.style.width = "250px";
+                    b.style.height = document.body.offsetHeight + "px";
+                    b.style.display = "block";
+                    setTimeout(function () {
+                        b.style.width = "250px";
+                        b.style.height = document.body.offsetHeight + "px";
+                        b.style.display = "none";
+                    }, 5000);
+                }, 500);
+            }
+        }, "", "reloadRecordindex");
+    })
+
+    $("#divReloadMusic").click(function(){
+        RfParamCall(function (xml)
+        {
+            if (XmlParser("result", xml) * 1 == 0) {
+                setTimeout(function ()
+                {
+                    var b = document.getElementById("MaskLayout");
+                    b.style.width = "250px";
+                    b.style.height = document.body.offsetHeight + "px";
+                    b.style.display = "block";
+                    setTimeout(function ()
+                    {
+                        b.style.width = "250px";
+                        b.style.height = document.body.offsetHeight + "px";
+                        b.style.display = "none";
+                    }, 5000);
+                }, 500);
+            }
+        }, "", "setMusicDefaultListRefresh");
+    })
+
+    $("#leftrepath").change(function () {
+        $("#rcListT").attr("page", 0);
+    })
+
+    $("#leftretime").change(function () {
+        $("#rcListT").attr("page", 0);
+    })
+
+    $("#pbRcType").change(function () {
+        $("#rcListT").attr("page", 0);
+    })
+
+
+    UI.FyHeadEvent("rcListM", 
+                   function (p, b) { $("#rcListT").attr("page", p); $("#rcListT").attr("isNan", b * 1); SwitchRecordPage(); }, 
+                   function (p, b) { $("#rcListT").attr("page", p); $("#rcListT").attr("isNan", b * 1); SwitchRecordPage(); }, 
+                   function () { return ($("#rcListT").attr("tPage") * 1) }
+    );
+
+    $("#rcListT tr td div").live("mouseover", function () {
+        $(this).css("cursor", "default");
+    }).live("click", function () {
+        $("#rcListT tr td div").css("background-color", "transparent").removeClass("rcChoseAC");
+        $(this).css("background-color", "#FAD");
+        $(this).addClass("rcChoseAC");
+    }).live("dblclick", function () {
+        if (!gVar.bPbStop) {
+            $("#pbBtnBt12").mousedown();
+            gVar.dbOpenNew = true;
+        }
+        else {
+            $("#pbBtnBt10").mousedown();
+        }
+    });
+})
+
+$(function(){	//config页面事件处理
+	//config左边菜单点击事件
+	$("div[id^='cfgmune_']").mouseover(function(){
+		$(this).css("cursor", "pointer");
+	}).click(function(){
+		var id = $(this).attr("id").split("cfgmune_")[1];
+		$(".configpanel").removeClass("configpanel").slideUp(0, function(){
+			$("#cfgpanel_"+id).slideDown(300, function(){
+				$(this).addClass("configpanel");
+			});
+		});
+	});	
+	
+	//子菜单下面样式事件
+	$(".notselected").mouseover(function(){
+		$(this).css("cursor", "pointer");
+		$(this).addClass("selecteda");
+	}).mouseout(function(){
+		$(this).removeClass("selecteda");
+	}).click(function(){
+		MasklayerShow();
+		$(".selectedb").removeClass("selectedb");
+		$(this).addClass("selectedb");
+		showConfigChild(this);
+	});
+});
+
+//视频遮挡，移动侦测在此页面中做处理
+function showConfigChild($o){	//显示子页面
+	gVar.SetPluginPos(0,0,0,0);
+	gDvr.ChangeWndSize(-1);
+	$("#avSheDel").css("display", "none");
+    $("#avSheback").css("display", "none");
+	var name=$o.id;
+	lanPage=name;
+    if($o.id != "set_guid" && $("#setguid").attr("name") == "isDown"){
+        //$("#setGuidWelcome").html("");
+        $("#setGuidName").html("");
+        $("#setGuidTime").html("");
+        $("#setGuidWifi").html("");
+        $("#setGuidIp").html("");
+        $("#setGuidWelcome").attr("name", "").css("display", "none");
+        $("#setGuidName").attr("name", "").css("display", "none");
+        $("#setGuidTime").attr("name", "").css("display", "none");
+        $("#setGuidWifi").attr("name", "").css("display", "none");
+        $("#setGuidIp").attr("name", "").css("display", "none");
+        $(".guidActive").removeClass("guidActive");
+    }
+	if ($o.id == "alarm_mv" || $o.id == "alarm_sud" || $o.id == "rc_jh" || $o.id == "alarm_io" || $o.id == "alarm_temperature") {
+		name="alarm";
+	}	
+	var $p = $("#"+name.split("_").join(""));
+	
+	$(".cfgactive").removeClass("cfgactive").css("display","none");
+	if ($p.attr("name") != "isDown"){
+		$.get("html/cfg/"+name+".html?"+gVar.nDate,function(data,state){
+			if (state != "success"){}
+			if(name == "bs_base" || name == "bs_time" || name == "net_wifi" || name == "net_ip"){
+                var dataPrefix = '<fieldset style="height:500px;"><legend><font size="5px" color="#4793e7"><strong><div id="';
+                switch(name){
+                    case "bs_base":dataPrefix = dataPrefix + "BsBaset";break;
+                    case "bs_time":dataPrefix = dataPrefix + "BsTimet";break;
+                    case "net_wifi":dataPrefix = dataPrefix + "NetWifit";break;
+                    case "net_ip":dataPrefix = dataPrefix + "NetIPt";break;
+                    default:dataPrefix = dataPrefix + "";
+                }
+                data = dataPrefix + '"></div></strong></font></legend>' + data + '</fieldset>';
+            }
+            $p.html(data);
+			$p.attr("name", "isDown").addClass("cfgactive").css({"display":"block","height":550});
+			$.getScript("html/cfg/"+name+".js?"+gVar.nDate, null);
+			
+			lan(name);
+			
+			if($o.id == "alarm_mv"){
+				$("#AmMoSX").click();
+			}
+		})
+	}else {
+		$("#"+name.split("_").join("")+"Rf").click();
+		$p.addClass("cfgactive").css("display","block");
+        if($o.id == "set_guid"){
+            $("#setGuidWelcome").addClass("guidActive").css("display", "block");
+            $("#setGuidName").css("display", "none");
+            $("#setGuidTime").css("display", "none");
+            $("#setGuidWifi").css("display", "none");
+            $("#setGuidIp").css("display", "none");
+        }
+		if($o.id == "alarm_mv"){
+			$("#AmMoSX").click();
+		}
+	}
+}
+
+/*var hue = new cursor();
+var Bright = new cursor();
+var Contrast = new cursor();
+var Saturation = new cursor();
+var Sharpness = new cursor();
+hue.create("live_wd_sj");
+Bright.create("live_wd_ld");
+Contrast.create("live_wd_dbd");
+Saturation.create("live_wd_bhd");
+Sharpness.create("live_wd_rd");*/
+//错误处理
+function XmlParm(){}
+function ErrPro(xml){
+	var res = XmlParser("result",xml)*1;
+	if(res != 0) {		
+	   switch(res){
+		  case -1:
+		  	ShowPaop(lg.get("IDS_TIPS"), lg.get("IDS_LEFT_CGIW"));
+		  	break;
+		  case -2:
+			  ShowPaop(lg.get("IDS_TIPS"), lg.get("IDS_LEFT_UNORPWD"));
+			  break;
+		  case -4:
+			  ShowPaop(lg.get("IDS_TIPS"), lg.get("IDS_LEFT_CFAIL"));
+			  break;
+		  case -5:
+			  ShowPaop(lg.get("IDS_TIPS"), lg.get("IDS_LEFT_OVERT"));
+			  break;
+		  case -6:
+		  	ShowPaop(lg.get("IDS_TIPS"), lg.get("IDS_LEFT_INLINE"));
+		  	break;
+		 
+		  case -8:
+			ShowPaop(lg.get("IDS_TIPS"), lg.get("IDS_LOG_NOLOG"));
+		  	break;  
+		}
+	}else {
+		var xmla;
+		if ( (typeof xml=='string')&&xml.constructor==String){
+			if ($.browser.msie){
+				xmla = new ActiveXObject("Microsoft.XMLDOM");
+				xmla.async = false;
+				xmla.loadXML(xml);
+			}else
+				xmla = ('<xml>'+xml+'</xml>');
+		}
+		return xmla;
+	}
+	return null;
+}
+//CallBack -- 回调函数
+//Paop -- 消息框提示标题
+//cmd -- 设置或者获取页面的密令行
+//xml -- 设置操作时用到的参数;
+function RfParamCall(CallBack, Paop, cmd, xml,timeout, usertype){	
+	//参数合法性检查
+	MasklayerShow();
+	if(typeof timeout == 'undefined') timeout = 5000;
+	
+	gVar.errTitle = Paop;
+	if (!jQuery.isFunction(CallBack)){
+		CallBack = function(){
+			MasklayerHide();
+		}
+	}
+
+	gVar.errTitle = Paop;
+	$.ajax({
+		type:'GET',
+		url:'/cgi-bin/CGIProxy.fcgi?'+urlEncode('usr='+user+'&pwd='+pwd+'&cmd='+ cmd+"&"+(new Date()).getTime()),
+		async:true,
+		timeout:timeout,
+		datatype:"text",
+		success:function(data){
+			var xml = ErrPro(data);
+			var hide;
+			if(xml != null){
+				//if($.browser.msie){
+					hide = CallBack(xml, data, usertype);
+				//}else{
+				//	hide = CallBack(xml, data, usertype);
+				//}
+			}
+			if (hide!=false)
+				MasklayerHide();
+		},
+		error:function(data, state){
+			ShowPaop(lg.get("IDS_TIPS"), lg.get("IDS_TIME_OUT"))
+			MasklayerHide();
+		}		
+	});
+}
+
+function RfParamCall2(CallBack, Paop, cmd, xml, timeout, usertype)
+{
+    MasklayerShow();
+    if (typeof timeout == 'undefined') timeout = 5000;
+    gVar.errTitle = Paop;
+    if (!jQuery.isFunction(CallBack)) {
+        CallBack = function ()
+        {
+            MasklayerHide();
+        }
+    }
+
+    gVar.errTitle = Paop;
+    $.ajax({
+        type: 'GET',
+        url: '/cgi-bin/CGIProxy.fcgi?' + urlEncode('usr=' + user + '&pwd=' + pwd + '&cmd=' + cmd + "&" + (new Date()).getTime()),
+        async: true,
+        timeout: timeout,
+        datatype: "text",
+        success: function (data)
+        {
+            var xml = ErrPro(data);
+            var hide;
+            if (xml != null) {
+                hide = CallBack(xml, data, usertype);
+            }
+        },
+        error: function (data, state)
+        {
+            ShowPaop(lg.get("IDS_TIPS"), lg.get("IDS_TIME_OUT"))
+            MasklayerHide();
+        }
+    });
+}
+
+function RfParamCall1(CallBack, Paop, cmd, xml,timeout, usertype){	
+	//参数合法性检查
+	MasklayerShow();
+	if(typeof timeout == 'undefined') timeout = 5000;
+	
+	gVar.errTitle = Paop;
+	if (!jQuery.isFunction(CallBack)){
+		CallBack = function(){
+			MasklayerHide();
+		}
+	}
+
+	gVar.errTitle = Paop;
+	$.ajax({
+		type:'GET',
+		url:'/cgi-bin/CGIProxy.fcgi?usr='+user+'&pwd='+pwd+'&cmd='+ cmd+"&"+(new Date()).getTime(),
+		async:true,
+		timeout:timeout,
+		datatype:"text",
+		success:function(data){
+			var xml = ErrPro(data);
+			var hide;
+			if(xml != null){
+				//if($.browser.msie){
+					hide = CallBack(xml, data, usertype);
+				//}else{
+				//	hide = CallBack(xml, data, usertype);
+				//}
+			}
+			if (hide!=false)
+				MasklayerHide();
+		},
+		error:function(data, state){
+			ShowPaop(lg.get("IDS_TIPS"), lg.get("IDS_TIME_OUT"))
+			MasklayerHide();
+		}		
+	});
+}

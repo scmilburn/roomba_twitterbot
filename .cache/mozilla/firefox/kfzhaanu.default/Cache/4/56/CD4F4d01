@@ -1,0 +1,422 @@
+<div style="height:100%; width:226px; overflow:hidden; margin-left:24px">
+<div id="left" style="width:750px; height:100%; overflow:hidden; margin-left:-24px">
+	<div id="liveleft">
+	    <div style="margin-left:8px;width:250px; margin-top:0px;">
+            <table style="width:220px;margin-left:14px;font-size:14px;color:#000;text-align:left;line-height:22px;font-family:Arial;">
+                <!--  多路画面   -->
+                <tr>
+                    <td colspan="2">
+                        <input type="radio" id="left_multi1" name="left_multi_radiolist" value="1" onmousedown="Left_Multi1Click()"/>
+                        <img src = "images/x1.gif">&nbsp;&nbsp;&nbsp;
+                        <input type="radio" id="left_multi2" name="left_multi_radiolist" value="4" onmousedown="Left_Multi2Click()"/>
+                        <img src = "images/x4.gif">&nbsp;&nbsp;&nbsp;
+                        <input type="radio" id="left_multi3" name="left_multi_radiolist" value="9" onmousedown="Left_Multi3Click()"/>
+                        <img src = "images/x9.gif">
+                    </td>
+                </tr>
+                <!--  电源频率   -->
+                <tr id="left_powfre">
+                    <td width="75" id="powerfreq"></td>
+                    <td>
+                        <div style="float:left;margin:0px 4px 0px 0px;">
+                            <select id="live_pf" style="width:138px;">
+								<option value="1">50Hz</option>
+                                <option value="0">60Hz</option>
+                                <option id="opLivePf" value="2"></option>                       
+                            </select>
+                        </div>
+                    </td>
+                </tr>
+                <!--  视频流选择   -->
+                <tr id="livespltr">
+                    <td id="LeftStrType"></td>
+                    <td>
+                        <div style="float:left;margin:5px 4px 0px 0px;">
+                            <select id="live_spl" style="width:138px;font-family: arial;"></select>
+                        </div>
+                    </td>
+                </tr>
+                <!--  镜像和翻转   -->
+                <tr align="center" id="left_jxfz">
+                	<td colspan="2">
+                	    <table cellpadding="0" cellspacing="0" border="0" width="100%" style="margin-top:3px;">
+                	        <tr>
+                	            <td width="50%" style="text-align:left;">
+                	                <input type="checkbox" id="live_jx" style="margin-left:10px;" />
+		            	            <label id="lab_live_jx"></label>
+                	            </td>
+                	            <td  width="50%" style="text-align:left;">
+                	                <input type="checkbox" id="live_fz" />
+						            <label id="lab_live_fz"></label>
+                	            </td>
+                	        </tr>
+                	    </table>
+					</td>
+                </tr> 
+                  <!--  zoom功能   -->
+                  <tr align="center" id="left_zoom">
+                	<td colspan="2">
+                		<table cellpadding="0" cellspacing="0" border="0" width="100%">
+                		    <tr>
+                		        <td width="50%" style="text-align:left;">
+                		            <div id="zoomIn" style="float:left;width:20px;height:20px;background:url(../images/zoomin.png);margin-left:10px;"></div>
+                		            <label id="lab_zoomIn" style="margin-left:5px;"></label>
+                		        </td>
+                		        <td width="50%" style="text-align:left;">
+                		            <div id="zoomOut" style="float:left;width:20px;height:20px;background:url(../images/zoomout.png);"></div>
+                                    <label id="lab_zoomOut" style="margin-left:5px;"></label>
+                		        </td>
+                		    </tr>
+                		</table>
+					</td>
+                </tr>  
+            </table> 
+        </div>
+	
+	    <div style="width:250px; height:2px;overflow:hidden;background:url(../images/line.jpg)"></div> 
+	    
+	    <!--  云台   -->
+    	<div id="leftptz" style="margin-left:50px; height:163px; width:164px; overflow:hidden;background:url(images/yt.png) no-repeat;position:relative;margin-top:5px;">
+        	<div id="live_yt1_ptzMoveUp" tag="0" style="background:url(images/fxp_r2_c5a.gif) no-repeat; width:22px; height:12px; position:absolute; left: 70px; top: 23px;" ></div>
+            <div id="live_yt2_ptzMoveTopLeft" tag="91" style="background:url(images/fxp_r3_c3.gif) no-repeat; width:13px; height:12px; position:absolute; left: 42px; top: 42px;" ></div>
+            <div id="live_yt2_ptzMoveTopRight" tag="90" style="background:url(images/fxp_r3_c7.gif) no-repeat; width:13px;height:12px;  position:absolute; left: 110px; top: 42px;"></div>
+            <div id="live_yt5_ptzMoveLeft"  tag="6" style="background:url(images/fxp_r5_c2.gif) no-repeat; width:12px; height:22px; position:absolute; left: 23px; top: 70px;" ></div>
+ 			<div id="live_fw" cmd="ptzReset" style="background:url(images/fxp_r5_c5.png) no-repeat; width:55px; height:55px; position:absolute; left: 54px; top: 55px;" ></div>
+            <div id="live_yt5_ptzMoveRight" tag="4" style="background:url(images/fxp_r5_c8.gif) no-repeat; width:12px;height:22px;  position:absolute; left: 128px; top: 70px;"></div>
+            <div id="live_yt5_ptzMoveBottomLeft" tag="93" style="background:url(images/fxp_r7_c3.gif) no-repeat; width:12px; height:13px; position:absolute; left: 42px; top: 110px;" ></div>
+            <div id="live_yt2_ptzMoveBottomRight" tag="92" style="background:url(images/fxp_r7_c7.gif) no-repeat; width:13px;height:12px;  position:absolute; left: 110px; top: 110px;"></div>
+            <div id="live_yt1_ptzMoveDown" tag="2" style="background:url(images/fxp_r8_c5.gif) no-repeat; width:22px; height:12px; position:absolute; left: 70px; top: 129px;" ></div>
+        </div>
+        
+        
+        <div style="width:250px; height:2px;overflow:hidden;background:url(../images/line.jpg);margin-top:5px;"></div> 	
+        
+        
+        
+        <div id="pllive2" style="font-family:Arial;">	
+            <div style="margin-left:40px;width:191px; height:200px; +height:260px;margin-top:5px;">
+                <div id="cruise_1" style=" text-indent:40px 25px;font-size:14px; text-align:center; line-height:27px;width:191px; height:25px;overflow:hidden; background:url(images/button9.gif) no-repeat;"></div>
+                <div id="m_1" style="width:210px; height:68px;font-size:13px;margin-top:10px;">
+                    <div id="cruise_path" style="float:left;line-height:27px; width:65px; text-indent:10px;"></div>
+                    <div style=" width:125px; height:25px;overflow:hidden; float:left;">
+                        <div><select id="cruise" style="width:100px;"></select></div>
+                        <div onmousedown="doEvent('cruise','mousedown')"></div>
+                    </div>
+       	            <br style="clear:left;" />
+       	            <div id="cruise_start" style="float:left;width:24px;margin-top:8px;margin-left:65px; height:21px;overflow:hidden;background:url(../images/expand-113.gif) 0px -21px no-repeat;"></div>
+       	            <div id="cruise_stop" style="float:left;width:24px;overflow:hidden; margin-top:8px;margin-left:25px;height:21px;background:url(../images/expand-113.gif) 0px -42px no-repeat;"></div>
+       	        </div>
+                
+                <div id="preset_2" style=" margin-top:2px;text-indent:40px 25px; text-align:center;line-height:27px;width:191px;font-size:14px; height:25px;overflow:hidden; background:url(images/button9.gif) 0px -25px no-repeat"></div>
+                <div id="m_2" style="width:210px; height:68px;font-size:13px; margin-top:10px;">
+                    <div id="preSetNameT"><div id="pre_pos" style="float:left;line-height:27px; width:65px; text-indent:10px;"></div>
+                        <div style=" width:125px; height:25px;overflow:hidden; float:left;">
+                            <div>
+                                <select id="preset" style="width:100px;"></select>
+                            </div>
+                            <div onmousedown="doEvent('preset','mousedown')"></div>
+                        </div>
+                        <br style="clear:left;" />
+                        <div id="pre_add" style="float:left;width:24px;overflow:hidden;margin-top:8px;margin-left:35px; height:21px;background:url(../images/expand-113.gif) 0px -126px no-repeat;"></div>
+                        <div id="pre_sub" style="float:left;width:24px; overflow:hidden;margin-top:8px;margin-left:25px;height:21px;background:url(../images/expand-113.gif) 0px 0px no-repeat;"></div>
+                        <div id="pre_goto" style="float:left;width:24px;overflow:hidden; margin-top:8px;margin-left:25px;height:21px;background:url(../images/expand-113.gif) 0px -63px no-repeat;"></div>
+                    </div>
+                    <div id="preSetName" style="display:none;"><div id="leftname" style="float:left;line-height:27px; width:65px; text-indent:28px;"></div>
+                        <div style="height:25px;">
+                            <input style="width:90px;height:18px;overflow:hidden;" type="text" id="preSetNameTe"/>
+                        </div>
+                        <!--<br style="clear:left;" />-->
+                        <div style="clear:left;margin-top:10px;"></div>
+                        <div id="preSetNameS" style="float:left;width:24px;margin-left:35px;overflow:hidden; height:21px;background:url(../images/expand-113.gif) 0px -105px no-repeat;"></div>
+                        <div id="preSetNameQ" style="float:left;width:24px;height:21px;margin-left:74px;overflow:hidden;background:url(../images/expand-113.gif) 0px -84px no-repeat;"></div>
+                    </div>
+                </div>
+            
+                <div id="LED_3" style="margin-top:2px;text-indent:40px 25px; text-align:center;line-height:27px;width:191px; height:25px; overflow:hidden;font-size:14px;background:url(images/button9.gif) 0px -50px no-repeat;"></div>
+                <div id="m_3" style="width:210px; height:68px;font-size:13px; margin-top:10px;">
+                    <div id="BsHwdCtSt" style="float:left;line-height:27px; width:65px; text-indent:10px;margin-top:10px;"></div>
+                    <div style=" width:125px; height:25px; overflow:hidden;float:left;margin-top:10px;">
+                        <div>
+                            <select id="BsHmode">
+                                <option id="BsHwdAuto" value="0"></option>
+                                <option id="BsHwdManual" value="1"></option>
+                                <option id="BsHwdSchedule" value="2"></option>
+                                <!--<option id="BsHwdClose" value="2"></option>-->
+                            </select>
+                        </div>
+                        <div onmousedown="doEvent('BsHmode','mousedown')"></div>
+                    </div>
+                    <br style="clear:left;" />
+                    <div id="BsHwdManualSetting" style="text-align:center;">
+                        <input type="radio" id="irOn" name="irCtrl" /><label id="lab_irOn"></label>&nbsp;&nbsp;&nbsp;
+                        <input type="radio" id="irOff" name="irCtrl" /><label id="lab_irOff"></label>
+                    </div>
+                </div>
+                
+                <div id="colar_4" style="margin-top:2px;text-indent:40px 25px; text-align:center;line-height:27px;width:191px; font-size:14px;height:25px;overflow:hidden; background:url(images/button9.gif) 0px -75px no-repeat"></div>
+                <div id="m_4" style="width:210px; height:125px;margin-top:5px;_height:150px;">
+                    <div id="QX_Operator1" style="width:180px; height:100px;_height:110px; margin:0px 0px 0px 0px;">
+                        <div id="live_wd_sj1" class="lf1" style="background-position:0px 0px"></div>
+                        <div class="lf2">
+        	                <div id="clordiv_1" class="lf4" flag="hue" cmd="setHue">
+        		                <div id="clordir_1" class="lf5"></div>
+        	                </div>
+        	                <div id="clorbtn_1" class="lf6"></div>
+                        </div> 
+                        <div id="live_wd_sj" class="lf7">0</div>
+                        <div id="live_wd_ld1" class="lf1" style="background-position:-14px 0px"></div>
+                        <div class="lf2">
+        	                 <div id="clordiv_2" class="lf4" flag="brightness" cmd="setBrightness">
+        		                <div id="clordir_2" class="lf5"></div>
+        	                </div>
+        	                <div id="clorbtn_2" class="lf6"></div>
+                        </div> 
+                        <div id="live_wd_ld" class="lf7">0</div>
+                        <div id="live_wd_dbd1" class="lf1" style="background-position:-28px 0px"></div>
+                        <div class="lf2">
+        	                <div id="clordiv_3" class="lf4" flag="constrast" cmd="setContrast">
+        		                <div id="clordir_3" class="lf5"></div>
+        	                </div>
+        	                <div id="clorbtn_3" class="lf6"></div>
+                        </div> 
+                        <div id="live_wd_dbd" class="lf7">0</div>
+                        <div id="live_wd_bhd1" class="lf1" style="background-position:-42px 0px"></div>
+                        <div class="lf2">
+        	                <div id="clordiv_4" class="lf4" flag="saturation" cmd="setSaturation">
+        		                <div id="clordir_4" class="lf5"></div>
+        	                </div>
+        	                <div id="clorbtn_4" class="lf6"></div>
+                        </div> 
+                        <div id="live_wd_bhd" class="lf7">0</div>
+                        <div id="live_wd_rd1" class="lf1" style="background-position:-56px 0px"></div>
+                        <div class="lf2">
+        	                <div id="clordiv_5" class="lf4" flag="sharpness" cmd="setSharpness">
+        		                <div id="clordir_5" class="lf5"></div>
+        	                </div>
+        	                <div id="clorbtn_5" class="lf6"></div>
+                        </div> 
+                        <div id="live_wd_rd" class="lf7">0</div>
+                    </div>
+                    <div  id="QX_Operator2" style=" margin-left:35px;font-size:13px;width:117px;" ><div id="color_default" class="button" style="text-align:center;line-height:21px;"></div></div>  
+                </div>
+
+                <div id="music_5" style="display:none; margin-top:2px;text-indent:40px 25px; text-align:center;line-height:27px;width:191px; font-size:14px;height:25px;overflow:hidden; background:url(images/button9.gif) 0px -75px no-repeat"></div>
+                <div id="m_5" style="display:none; width:250px; height:65px;margin-top:10px;font-size:13px;">
+                
+                    <div style="width:100%;height:25px;">
+                        <div id="music_prev" style="margin-left:0px;margin-top:10px;float:left;width:24px;height:21px;background-image:url(images/btn-music.png);background-position:0px -42px;background-repeat:no-repeat;"></div>
+                        <div id="music_play" style="margin-left:18px;margin-top:10px;float:left;width:24px;height:21px;background-image:url(images/btn-music.png);background-position:0px 0px;background-repeat:no-repeat;"></div>
+                        <div id="music_pause" style="margin-left:18px;margin-top:10px;float:left;width:24px;height:21px;background-image:url(images/btn-music.png);background-position:0px -21px;background-repeat:no-repeat;display:none;"></div>
+                        <div id="music_stop" style="margin-left:18px;margin-top:10px;float:left;width:24px;height:21px;background-image:url(images/btn-music.png);background-position:0px -21px;background-repeat:no-repeat;display:none;"></div>
+                        <div id="music_next" style="margin-left:18px;margin-top:10px;float:left;width:24px;height:21px;background-image:url(images/btn-music.png);background-position:0px -63px;background-repeat:no-repeat;"></div>
+
+                        <div id="music_singlerepeat" style="margin-left:18px;margin-top:10px;float:left;width:24px;height:21px;background-image:url(images/btn-music.png);background-position:0px -126px;background-repeat:no-repeat;"></div>
+                        <div id="music_allrepeat" style="margin-left:18px;margin-top:10px;float:left;width:24px;height:21px;background-image:url(images/btn-music.png);background-position:0px -84px;background-repeat:no-repeat;display:none;"></div>
+                        <div id="music_playlist" style="margin-left:18px;margin-top:10px;float:left;width:24px;height:21px;background-image:url(images/btn-music.png);background-position:0px -105px;background-repeat:no-repeat;display:none;"></div>
+                        <div id="music_10" style="margin-left:18px;margin-top:10px;float:left;width:24px;height:21px;background-image:url(images/btn-sleep.png);background-position:0px -63px;background-repeat:no-repeat;"></div>
+                        <div id="music_20" style="margin-left:18px;margin-top:10px;float:left;width:24px;height:21px;background-image:url(images/btn-sleep.png);background-position:0px 0px;background-repeat:no-repeat;display:none;"></div>
+                        <div id="music_30" style="margin-left:18px;margin-top:10px;float:left;width:24px;height:21px;background-image:url(images/btn-sleep.png);background-position:0px -21px;background-repeat:no-repeat;display:none;"></div>
+                        <div id="music_100" style="margin-left:18px;margin-top:10px;float:left;width:24px;height:21px;background-image:url(images/btn-sleep.png);background-position:0px -42px;background-repeat:no-repeat;display:none;"></div>
+                    </div>
+                    <br />
+                    <div style="height:25px;">
+                        <div id="music_list_title" style="float:left;line-height:25px;width:55px;margin-bottom:0px;"></div>
+                        <div style="overflow:hidden;float:left;margin-bottom:0px;">
+                            <select id="sel_music_list" style="width:100px;height:19px;margin-top:2px;"></select>
+                        </div>
+                        <div id="divReloadMusic" style="width:23px;height:19px;float:left;margin-left:10px;margin-bottom:0px;margin-top:2px;background:url(../images/reload.png)"></div>
+                    </div>
+                </div>
+                
+                
+            </div>
+        </div>
+        <div  id="pllive" name="pllive" style="position:absolute; top:0px; left:0px; width:250px; height:620px; display:none;"></div>
+    </div>
+    
+    
+    <div id="configleft" style="font-family:arial;">
+        <div style="clear:right;float:right;height:100%;width:4px;background:url(../images/cb2.gif); overflow: hidden; margin-top:-30px;">
+    	    <div style="height:3px; width:4px; overflow:hidden; background:url(../images/cb4.gif); margin-top:30px"></div>
+        </div>
+        <div style="clear:left;float:left;height:100%;width:246px;">
+    	    <div id="configMl" style="width:197px; height:100%; margin-left:20px;" >
+				<div style="height:15px;"></div>
+                <div class="configHead" id="cfgmune_12"><div class="configDiv" style="width:18px;"></div></div>
+                <div style="display:none;" id="cfgpanel_12">
+                    <div id="set_guid" class="notselected"></div>
+                </div>
+                <div class="configHead" id="cfgmune_1"><div class="configDiv" style="width:18px;"></div></div>	
+                <div style="display:none;" id="cfgpanel_1">
+                    <div id="dev_info" class="notselected"></div>
+                    <div id="dev_state" class="notselected"></div>
+                    <div id="dev_ses" class="notselected"></div>
+                    <div id="dev_log" class="notselected"></div>
+                </div>
+                <div class="configHead" id="cfgmune_2"><div class="configDiv" style="width:18px;"></div></div>	
+                <div style="display:none;" id="cfgpanel_2">
+                    <div id="bs_base" class="notselected"></div>
+                     <div id="bs_time" class="notselected"></div>
+                    <div id="usr_base" class="notselected"></div>
+                    <div id="bs_multi" class="notselected"></div>
+                </div>
+                <div class="configHead" id="cfgmune_3"><div class="configDiv" style="width:19px;"></div></div>	
+                <div style="display:none;" id="cfgpanel_3">
+                    <div id="net_ip" class="notselected"></div>
+                    <div id="net_wifi" class="notselected" ></div>
+                    <div id="net_pppoe" class="notselected"></div>
+                    <div id="net_ddns" class="notselected"></div>
+                    <div id="net_upnp" class="notselected" ></div>
+                    <div id="net_port" class="notselected" ></div>
+                    <div id="bs_email" class="notselected"></div>
+                    <div id="path_ftp" class="notselected"></div>
+					<div id="net_p2p" class="notselected" ></div>
+					<div id="net_cloud" class="notselected" style="display:none;"></div>
+					<div id="net_push" class="notselected" style="display:none;"></div>
+                </div>
+                <div class="configHead" id="cfgmune_5"><div class="configDiv" style="width:23px;"></div></div>	
+                <div style="display:none;" id="cfgpanel_5">
+                    <div id="av_base" class="notselected"></div>
+                    <div id="av_osd" class="notselected"></div>
+                    <div id="av_mask" class="notselected"></div>
+                    <div id="av_captur" class="notselected"></div>
+                    <div id="av_irled" class="notselected"></div>
+                    <div id="av_lens" class="notselected" ></div>
+                </div>
+                <div class="configHead" id="cfgmune_4"><div class="configDiv" style="width:25px;"></div></div>	
+                <div style="display:none;" id="cfgpanel_4">
+                    <div id="alarm_mv" class="notselected"></div>
+                    <div id="alarm_sud" class="notselected"></div>
+                    <div id="alarm_io" class="notselected"></div>
+                    <div id="alarm_temperature" class="notselected" style="display:none;"></div>
+                </div>
+                
+                <div class="configHead" id="cfgmune_6"><div class="configDiv" style="width:24px;"></div></div>	
+                <div style="display:none;" id="cfgpanel_6">
+                    <div id="rc_path" class="notselected"></div>
+                    <div id="rc_jh" class="notselected" style="display:none;"></div>
+                    <div id="rc_alarm" class="notselected"></div>
+                    <div id="rc_localalarm" class="notselected"></div>
+                    <div id="rc_plan" class="notselected"></div>
+                    <div id="rc_sdmanage" class="notselected"></div>
+                </div>
+                
+                <div class="configHead" id="cfgmune_11" style="display:none;"><div class=""configDiv" style="width:24px;"></div></div>
+                <div style="display:none;" id="cfgpanel_11">
+                    <div id="child_music" class="notselected"></div>
+                </div>
+
+                <div class="configHead" id="cfgmune_7"><div class="configDiv" style="width:24px;" ></div></div>	
+                <div style="display:none;" id="cfgpanel_7">
+                    <div id="ptz_rate" class="notselected"></div>
+                    <div id="ptz_ctrack" class="notselected"></div>
+                    <div id="ptz_initcof" class="notselected"></div>
+					<div id="ptz_485" class="notselected" style = "display:none;"></div>
+                </div>
+                <div class="configHead" id="cfgmune_8" style="display:none;"><div  class="configDiv" style="width:19px;"></div></div>	
+                <div style="display:none;" id="cfgpanel_8">
+                    <div id="path_ftp" class="notselected"></div>
+                    <div id="path_gx" class="notselected" style="display:none;"></div>
+                </div>
+                <div class="configHead" id="cfgmune_9"><div  class="configDiv" style="width:16px;"></div></div>	
+                <div style="display:none;" id="cfgpanel_9">
+                    <div id="fw_ip" class="notselected"></div>
+                </div>
+                
+                <div class="configHead" id="cfgmune_10"><div  class="configDiv" style="width:25px;"></div></div>	
+                <div style="display:none;" id="cfgpanel_10">
+                    <div id="sys_dr" class="notselected"></div>
+                    <div id="sys_updata" class="notselected"></div>
+                    <div id="sys_patch" class="notselected"></div>
+                    <div id="sys_hf" class="notselected"></div>
+                    <div id="sys_cq" class="notselected"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+      
+        
+    <div id="playbackleft" style="font-family:arial;">
+    	<div style="margin-left:20px;">
+    	    <div id="CalDayID" name=""></div>
+		    <!-----存储月搜索数据--------->
+            <input type="text" id="calday" style="display:none;" maxlength="10" readonly="true"/>
+            <div id="calendar" class="calendarDiv">
+        	    <input type="text" id="next_touch_date" readonly="readonly" />
+            </div>
+            <div style="background:#9ea29e; width:208px; height:110px;">
+                <div id="leftpat" style="float:left;line-height:20px; width:65px; text-indent:10px;font-size:12px;margin-top:10px;"></div>
+                <div style=" width:125px; height:25px; overflow:hidden; float:left;margin-top:10px;">
+                    <div>
+                        <select id="leftrepath" style="width:90px;">
+                            <option value="0"></option><!--<option value="1"></option>-->
+                        </select>
+                    </div>
+                    <div onmousedown="doEvent('leftrepath','mousedown')"></div>
+                </div>
+                <br style="clear:left;"/>
+                <div id="lefttim" style="float:left;line-height:20px; width:65px; text-indent:10px;font-size:12px;"></div>
+                <div style="height:25px; overflow:hidden; float:left;">
+                    <div>
+                        <select id="leftretime" style="width:90px;">
+                            <option value="0"></option>
+                            <option value="1"></option>
+                            <option value="2"></option>
+                        </select>
+                    </div>
+                    <div onmousedown="doEvent('leftretime','mousedown')"></div>
+                </div>
+                <br style="clear:left;"/>
+                <div id="recordtype" style="float:left;line-height:20px; width:65px; text-indent:10px;font-size:12px;"></div>
+                <div style="height:25px; overflow:hidden; float:left;">
+                    <div>
+                        <select id="pbRcType" style="width:90px;">
+                            <option value="2" id="all_record" selected="selected"></option>
+                            <option value="1" id="common_record"></option>
+                            <option value="0" id="plan_record"></option>
+                        </select>
+                    </div>
+                    <div style="margin-left:70px" onmousedown="doEvent('pbRcType','mousedown')"></div>
+                </div>
+                <div style="width:50px; height:19px;  overflow:hidden;float:left;margin-left:2px;margin-top:2px;">
+                <div id="RcSearch" style=" width:23px; height:19px;float:left;background:url(../images/serch.gif)"></div> 
+                <div id="RcReload" style=" width:23px; height:19px;float:left;margin-left:2px;background:url(../images/reload.png)"></div>
+                </div>
+
+                <br style="clear:left;" />
+                <div id="continPlay" style="float:left;line-height:20px; width:165px; text-indent:10px;font-size:12px;"></div>
+                <div style="height:25px; overflow:hidden; float:left;">
+                    <input type="checkbox" id="continCheck" />
+                </div>
+
+                <div id="serword" style="font-size:14px; color:red; clear:left; text-indent:40px; display:none;">正在搜索，请稍后……</div>          
+            </div>
+            <div style="height:255px;">
+                <div style="width:208px; height:7px; overflow:hidden;background:url(../images/2-button_2.jpg)"></div>
+                <div style="width:208px; height:7px; overflow:hidden;background:#525252;"></div>
+                <div style="width:208px; height:11px; overflow:hidden;background:url(../images/background_3.jpg)"></div>
+                
+                <div  style="height:232px; clear:left;float:left;margin-top:-10px; width:1px;overflow:hidden; background:#525252"></div>
+                <div style="height:210px; width:205px; float:left; position:relative; border-top:1px solid #525252; border-bottom:1px solid #525252;margin-top:5px;">
+                    <table id="rcListT" ListNum="0" width="205px" style=" position:absolute; top:-18px;border-collapse:collapse;text-align:left;text-indent:3px; font-size:11px; line-height:18px; color:#000; display:none; table-layout:fixed;">
+                    </table>
+                </div>
+                <div  style="float:left;height:232px;margin-top:-10px; width:1px;overflow:hidden; background:#525252"></div>
+            </div>
+            <div style="height:25px; width:208px;overflow:hidden; margin-top:-12px;position:relative;background:#525252;">
+           
+                <div style="width:208px; height:11px;overflow:hidden;background:url(../images/background_4.jpg)"></div>
+                <div style="width:208px; height:10px;overflow:hidden;background:#525252;"></div>
+                <div style="width:208px; height:4px;overflow:hidden; background:url(../images/background_5.jpg)"></div>
+                <div id="rcListM" style="color:#000; font-size:9px; position:absolute; top:0px; display:none;">
+                    <div style="float:left; width:50px; line-height:28px;"></div>
+                    <div style="float:left; line-height:28px;"></div>
+                </div>
+    	    </div>
+        </div>
+    </div>
+    
+    
+    
+</div>
+</div>

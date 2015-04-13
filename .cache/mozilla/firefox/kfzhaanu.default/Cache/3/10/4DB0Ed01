@@ -1,0 +1,323 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>IPCam Client</title>
+<script src="js/ansiUrlCodec.js" type="text/javascript"></script>
+<script src="js/jquery-1.4.4.min.js" type="text/javascript"></script>
+<script src="js/language.js" type="text/javascript"></script>
+<script src="js/common.js" type="text/javascript"></script>
+<script src="js/class.js" type="text/javascript"></script>
+<script src="js/main.js" type="text/javascript"></script>
+<script src="js/classwy.js" type="text/javascript"></script>
+<script src="js/upfile.js" type="text/javascript"></script>
+
+<script language="javascript" type="text/javascript">
+function doEvent(){}
+function ReSize(){}
+$(function(){
+    var isIE11 = true;
+    var pVersion = "3.0.0.2"
+    var s = navigator.userAgent.split("Trident");
+    if (typeof s[1] == 'undefined')
+    {
+	    isIE11 = false;
+    }
+	function DownPluginTip(){}
+	var isIE = true;
+	if (($.browser.safari || $.browser.mozilla) && !isIE11){
+		isIE = false;
+		doEvent=doEvent1;
+		ReSize = function(){try{$("#gsliderCov").trigger("sChange");}catch(e){}}/*chrome有点格鲁*/
+		var plugins = navigator.plugins;
+		var plugin = false;
+		for (var pi = 0; pi  < plugins.length; pi++)
+		{
+			if (plugins[pi][0].type == "application/ipcam-regplugin")
+			{
+				vsIf = plugins[pi].description.split("-");
+				if (vsIf.length==2) vsIf=vsIf[1];
+				else vsIf="";
+				plugin = true;break;
+			}
+		}
+		if(!plugin){
+		    DownPluginTip = function(){
+			    var browserName = navigator.userAgent.toLowerCase();
+			    var obj = document.getElementById("downPlugins");
+			    if(/firefox/i.test(browserName)){
+                        obj.innerHTML = '<a id="down" href="IPCWebComponents.exe">' + lg.get("IDS_LOGIN_KJ") + '</a>';
+			    }else if(/chrome/i.test(browserName)){
+                        obj.innerHTML = '<a id="down" href="IPCWebComponents.exe">' + lg.get("IDS_LOGIN_KJ") + '</a>';
+			    }else{
+				    obj.innerHTML = '<a id="down" href="plugins.pkg">'+lg.get("IDS_LOGIN_KJ")+'</a>';
+			    }
+            }
+        }
+        else {
+            //check plugin version
+            var v1 = vsIf.split(".");   //plugin version
+            var v2 = pVersion.split(".");    //web version
+            var needUpdate = false;
+            for(var m = 0; m < 4; m++){
+                if(v2[m] * 1 > v1[m] * 1){
+                    needUpdate = true;
+                    break;
+                }else if(v2[m] * 1 == v1[m] * 1){
+                    continue;
+                }else{
+                    needUpdate = false;
+                    break;
+                }
+            }
+            if (needUpdate) {
+                DownPluginTip = function () {
+                    var browserName = navigator.userAgent.toLowerCase();
+                    var obj = document.getElementById("downPlugins");
+                    if (/firefox/i.test(browserName)) {
+                        obj.innerHTML = '<a id="down" href="IPCWebComponents.exe">' + lg.get("IDS_PLUGIN_UPDATE_TIP") + '</a>';
+                    } else if (/chrome/i.test(browserName)) {
+                        obj.innerHTML = '<a id="down" href="IPCWebComponents.exe">' + lg.get("IDS_PLUGIN_UPDATE_TIP") + '</a>';
+                    } else {
+                        obj.innerHTML = '<a id="down" href="plugins.pkg">' + lg.get("IDS_PLUGIN_UPDATE_TIP") + '</a>';
+                    }
+                }
+            }
+        }
+
+		var str="";
+		for(var i=0; i<9; i++){
+            str += ('<div id="ipcamdiv' + i + '" style="float:left;height:0%;width:0%;"><embed width="100%" height="100%" pluginspage="IPCWebComponents.exe" type="application/ipcam-regplugin" id="ipcam" name="' + i + '"></embed></div>')
+		}
+		$("#plugin").html(str);
+		//$("#plugin").html('<embed width="100%" height="100%" pluginspage="plugins.crx" type="application/ipcam-plugin" id="ipcam"></embed>');
+	}else if($.browser.msie || isIE11){
+		doEvent=doEvent2;
+		if($.browser.version == "6.0"){
+			//设计最小值
+			onReSize();
+			document.body.onresize = function(){onReSize();changPlugin();try{$("#gsliderCov").trigger("sChange");}catch(e){}};	
+		}else{
+			document.body.onresize = function(){changPlugin();try{$("#gsliderCov").trigger("sChange");}catch(e){}};
+		}
+	}
+	window.onbeforeunload = function(e){
+		Logout();
+	}
+	WebInit(DownPluginTip, isIE);
+});
+</script>
+<link href="css/main1.css" rel="stylesheet" type="text/css" />
+</head>
+<body onselectstart="return fbd();" onresize="ReSize()">
+<iframe onload="" id="cgiframe" style="display:none"></iframe>
+<iframe onload="" id="cgiframe1" style="display:none"></iframe>
+<div id="MsgPaop">
+    <div id="PaopBg" style="height:28px; width:240px; background:url(images/paopaotitie.gif)">
+        <div id="Paoptitle" ></div><div class="paopao_close"></div>
+    </div>
+    <div id="PaopContant" style="height:145px; width:240px;white-space:normal;word-break:break-all; background:#FFF;"></div>
+</div>
+<div id="MaskLayout"></div>
+<script>MasklayerShow();</script>
+<div id="login"></div>
+<div id="header" class="undisplay" style="background:url(images/con-logo-bg.png); display:none;font-family:Arial;">
+    <div style=" position:relative;float:left;width:290px;height:78px;background:url(../images/con-logo.png) no-repeat; overflow:hidden;">
+        <div style="float:left;float:left;width:20px; margin-top:63px;height:15px;background:url(images/body-1.gif); overflow:hidden;"></div>
+        <div style="float:left;width:270px; height:15px; margin-top:63px;background:url(images/top-4.jpg); overflow:hidden"></div>
+    </div> 				   
+    <div style="float:left;width:549px; height:78px; position:relative; overflow:hidden;">
+    <div id="liveTemperature" style="float:left; top:30px;position:absolute;"></div>
+        <div id="LiveMenu" style=" text-align:left; line-height: 50px;font-size:15px; color:#000;text-indent:80px;text-indent:10px\0;float:left;width:179px; height:49px;top:20px;left:100px;position:absolute;background:url(images/button-2.gif) 0px 0px no-repeat; z-index:30;cursor:pointer;">
+	        <div id="LiveMenu_2" class="bc1"></div>
+        </div>
+    
+        <div id="PlayBackMenu" style=" line-height: 50px;font-size:15px; color:#000;text-indent:90px;z-index:29;text-indent:10px\0;float:left;width:179px; height:49px;top:20px;left:370px;position:absolute;background: url(images/button-2.gif) -179px 0px no-repeat;cursor:pointer;">
+	        <div id="PlayBackMenu_2" class="bc2"></div>
+        </div>
+    
+        <div id="ConfigMenu" style="line-height:50px; text-indent:80px;font-size:15px; color:#000;z-index:28;float:left;text-indent:4px\0;width:179px; height:49px;top:20px;left:235px;position:absolute;background: url(images/button-2.gif) -179px 0px no-repeat;overflow:hidden;cursor:pointer;">
+	        <div id="ConfigMenu_2" class="bc3"></div>
+        </div>
+        <div style="height:15px;background:url(images/top4.jpg); position:absolute; width:549px; bottom:0; overflow:hidden;"></div> 
+    </div>
+    
+    
+    <div style="height:78px; width:100%; margin-left:-839px; overflow:hidden;float:left;">
+    	<div id="LogoutMenu" style="display:none;"></div>
+    	<div>
+    	    <label style="float:right;margin-top:22px;margin-right:30px;font-size:30px;color:#606a73;text-shadow:d1;font-family:Arial;font-weight:bolder;" id="labConTitle">高清网络摄像机</label>
+    	</div>
+		<div style=" height:15px;background:url(images/top4.jpg); margin-top:63px; margin-right:16px;"></div>  
+		<div style="width:16px; height:15px;background:url(images/body-2.gif); float:right; margin-top:-15px;_margin-top:-19px;"></div>
+    </div>
+     
+    <!--<div style="height:78px;width:100%;position:absolute;left:839px;top:0px;">11111111111
+        <div id="LogoutMenu" style="display:none;"></div>
+        <div style="height:63px;width:100%;">Indoor Pan/Tilt IP Camera</div>
+		<div style=" height:15px;width:100%;background:url(images/top4.jpg);position:absolute;top:63px;right:16px;">2222222222</div>  
+		<div style="width:16px; height:15px;background:url(images/body-2.gif); float:right; margin-top:-15px;_margin-top:-19px;">3333333333333</div>
+    </div>-->
+    <!--<table style="height:78px;width:100%;position:relative;margin-left:1px;" cellpadding="0" cellspacing="0" border="1">
+        <tr style="width:100%;" height="63px">
+            <td style="border:solid 2px #000000;">
+                <div id="LogoutMenu" style="display:none;"></div>
+                <div style="height:63px;width:100%;">Indoor Pan/Tilt IP Camera</div>
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td style="height:15px;background:url(images/body-2.gif);"></td>
+        </tr>
+    </table>-->
+    
+    <!--<div style="height:78px; width:100%; margin-left:-839px; overflow:hidden;float:left;">
+    	<div id="LogoutMenu" style="float:right;width:47px;height:68px;margin-right:36px;background:url() no-repeat 0px 30px;" onmouseover="this.style.backgroundImage=''" onmouseout="this.style.backgroundImage=''"></div>
+		<div style=" height:15px;background:url(images/top4.jpg); margin-top:63px; margin-right:16px;"></div>  
+		<div style="width:16px; height:15px;background:url(images/body-2.gif); float:right; margin-top:-15px;_margin-top:-19px;"></div>
+    </div>-->
+</div>
+
+<div id="content">
+    <div id="mleft" class="undisplay" style="background: url(images/top-5.jpg)"></div>
+    <div id="main" style="background:#c4c7cc;">
+    	<div id="objPC">
+        	<div id="plugin" style="position:absolute; z-index:100000;width:0; height:0;"><script>
+			var browserName = navigator.userAgent.toLowerCase();
+			if(/ie/i.test(browserName) || /trident/i.test(browserName)){
+				var str="";
+				for(var i=0; i<9; i++){
+				    str += ('<div id="ipcamdiv' + i + '" style="float:left;height:0;width:0;background:#000"><object codebase="IPCWebComponents.exe" style="display:block" width="100%" height="100%" name="' + i + '" id="ipcam" classid="clsid:98703E7E-E705-4043-8FCE-E828D9C1EEAD"><param name="Self" value="' + i + '" /></object></div>')
+				}
+				document.write(str);
+			}
+            </script></div>
+            <div id="configPage" class="style11">
+            <div style="width:100%;height:4px; background:url(../images/cb4.gif); overflow:hidden;"><div style="width:12px; height:4px; overflow:hidden; float:right;"><div style="float:right;height:100%;width:10px;background:#c4c7cc;overflow:hidden;"></div>
+            <div style="float:right;height:100%;width:2px;background:url(../images/control-8.jpg);overflow:hidden;"></div></div></div>
+            <div style="float:right;height:100%;width:10px;background:#c4c7cc;overflow:hidden;"></div>
+            <div style="float:right;height:100%;width:2px;background:url(../images/control-8.jpg);overflow:hidden;"></div>
+            
+            <div id="MaskError"></div>
+            <center>
+                <div id="setguid" class="style29"></div>
+                <div class="cfgactive style29" id="devinfo"></div>
+                <div id="devstate" class="style29"></div>
+                <div id="devses" class="style29"></div>
+                <div id="devlog" class="style29"></div>
+                
+                <div id="bsbase" class="style29"></div>
+                <div id="bstime" class="style29"></div>
+                <div id="bsemail" class="style29"></div>
+                <div id="bshwd" class="style29"></div>
+                <div id="usrbase" class="style29"></div>
+                <div id="bsmulti" class="style29" style="margin-top:20px;"></div>
+                
+                <div id="netip" class="style29"></div>
+                <div id="netpppoe" class="style29"></div>
+                <div id="netddns" class="style29"></div>
+                <div id="netwifi" class="style29"></div>
+                <div id="netport" class="style29"></div>
+                <div id="netp2p" class="style29"></div>
+                <div id="netupnp" class="style29"></div>
+                <div id="netcloud" class="style29"></div>
+                <div id="netpush" class="style29"></div>
+                
+                <div id="alarm" class="style29"></div>
+                
+                <div id="avbase" class="style29"></div>
+                <div id="avosd" class="style29"></div>
+                <div id="avmask" class="style29"></div>
+                <div id="avcaptur" class="style29"></div>
+                <div id="avirled" class="style29"></div>
+                <div id="avlens" class="style29"></div>
+                
+                <div id="rcpath" class="style29"></div>
+                <div id="rcalarm" class="style29"></div>
+                <div id="rclocalalarm" class="style29"></div>
+                <div id="rcplan" class="style29"></div>
+                <div id="rcsdmanage" class="style29"></div>
+
+                <div id="childmusic" class="style29"></div>
+                
+                <div id="fwip" class="style29"></div>
+          
+                <div id="pathftp" class="style29"></div>
+                <div id="pathgx" class="style29"></div>
+                
+           
+                <div id="sysdr" class="style29"></div>
+                <div id="sysupdata" class="style29"></div>
+                <div id="syspatch" class="style29"></div>
+                <div id="syshf" class="style29"></div>
+                <div id="syscq" class="style29"></div>
+                
+                <div id="ptzrate" class="style29"></div>
+                <div id="ptzctrack" class="style29"></div>
+                <div id="ptzinitcof" class="style29"></div>
+				<div id="ptz485" class="style29"></div>
+                </center>
+            </div>
+            
+        </div>
+        <div id="bottom" class="undisplay" style="background:#242a2c;">
+            <div id="ftLive" style="height:36px; width:100%;overflow:hidden;">
+                <!--<div class="style10">&nbsp;</div>-->
+                <div class="liveBtnBt1"></div>
+                <div class="liveBtnBt2"></div>
+                <div class="liveBtnBt3"></div>
+                <div class="liveBtnBt4" style="display:none"></div>
+                
+                
+                <div class="liveBtnBt5"></div>
+                <div id="LVRcA" style="float:right; width:25px; height:25px;overflow:hidden; background:url(images/circle-4.png) no-repeat;cursor:pointer;margin:5px 10px;"></div>
+                <div id="LVRc" style="float:right; width:25px; height:25px; overflow:hidden;display:none; background:url(images/record_down.png) no-repeat;cursor:pointer;margin:5px 10px;"></div>
+                <div id="LVCapture" style="float:right;width:25px; height:25px;overflow:hidden; background:url(images/circle-5.png) no-repeat;margin:5px 10px;"></div>	
+                
+                <div class="liveBtnBt8"></div>
+                <div class="liveBtnBt9" name="active"></div>
+                <div class="liveBtnBt109" style="display:none;"></div>
+                <div class="volumeOn" style="display:none;"></div>
+                <div class="volumeOff" style="display:none;"></div>
+                <div id="live_sound" style="margin-right:10px;margin-top:1px; height:60px; width:160px; float:left; overflow:hidden;display:none;">
+                    <div class="lf2" style="margin-left:8px;margin-top:6px;">
+        	            <div id="clordiv_6" class="lf4" flag="volume" cmd="setAudioVolume">
+        		            <div id="clordir_6" class="lf5"></div>
+        	            </div>
+        	            <div id="clorbtn_6" class="lf6"></div>
+                    </div> 
+                <div id="live_wd_video" class="lf8" style="margin-left:8px;margin-top:6px;"></div>
+                </div>
+            </div>
+            <div id="ftpback" style="height:0px; width:100%;overflow:hidden;">
+            	<!--<div style="width:210px;height:36px;">-->
+            	    <div id="pbBtnBt10"></div>
+                    <div class="liveBtnBt11" style="display:none;"></div>
+                    <div id="pbBtnBt12"></div>
+                    <!--<div class="liveBtnBt9" name="" style="background-position:0 0;"></div>
+                    <div class="liveBtnBt109" style="display:none;"></div>-->
+                    <div class="liveBtnBt9B" style="display:none;"></div>
+                    <div class="liveBtnBt109B"></div>
+                <!--</div>-->
+                <!--<div style="float:left;width:160px; height:36px;"></div>-->
+                <div style="float:left;width:3px;height:7px; overflow:hidden;background:url(images/sb1.jpg);margin-top:12px;margin-left:20px;"></div>
+                <div class="ac2">
+                    <div class="inner">
+                	    <div id="gsliderCov" a="0" style="width:100%; height:7px;overflow:hidden;background:url(images/sb2.jpg) repeat-x;">
+                            <div id="gslider" style=" background:url(images/sb2.jpg) 0 -7px;height:7px;width:0%; overflow:hidden;"></div>
+                        </div>
+                        <div id="gsliderBtn" style="background-image:url(images/scrollbtn.gif); height:12px; width:12px;overflow:hidden;margin-top:-8px; margin-left:-5px;"></div>
+                    </div>
+                </div>
+                
+                <div style="float:left;width:4px; height:7px;overflow:hidden;background:url(images/sb1.jpg) -3px 0;margin:12px 0;"></div>
+                <div class="liveBtnBt5"></div>
+                <!--<div style="height:15px; width:50px;overflow:hidden;float:right;"></div>-->
+                
+            </div>
+    	</div>
+	</div>
+</div>
+</body>
+</html>

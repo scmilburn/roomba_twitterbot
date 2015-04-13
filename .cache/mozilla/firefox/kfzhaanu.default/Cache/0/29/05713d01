@@ -1,0 +1,622 @@
+var lanPage=null;
+function sH(id,t){document.getElementById(id).innerHTML=lg.get(t)}
+function sOH(id,n,t){document.getElementById(id).options[n].innerHTML=lg.get(t)}
+function sT(id,t){document.getElementById(id).title=lg.get(t)}
+function sV(id,t){document.getElementById(id).value=lg.get(t)}
+function rP(id,p){$("#"+id).prepend(lg.get(p));}
+
+function lan(pageName){
+	if(pageName =="left"){
+	sT("live_wd_dbd1","IDS_CONSTRAST");sT("live_wd_ld1","IDS_LIGHT");sT("live_wd_bhd1","IDS_SATURATION");sT("live_wd_sj1","IDS_HUE");sT("live_wd_rd1","IDS_MAIN_RD");
+	sH("BsHwdCtSt", "IDS_LEFT_LED"); sH("BsHwdSchedule", "IDS_BS_TIMING"); sH("BsHwdManual", "IDS_BS_MANUAL"); sH("BsHwdAuto", "IDS_BS_AUTO"); sH("leftpat", "IDS_LEFT_PAT"); sH("lefttim", "IDS_LEFT_TIM");
+		sOH("leftrepath",0,"IDS_AV_SDCARD");sOH("leftretime",0,"IDS_RECTYPE_03");sOH("leftretime",1,"IDS_LEFT_RETIME1");
+		sOH("leftretime",2,"IDS_LEFT_RETIME2");sH("recordtype","IDS_TYPE");sH("leftname","IDS_LEFT_NAME");sH("powerfreq","IDS_LEFT_POWERFREQ");sH("pre_pos","IDS_TIP_PRESET");sH("opLivePf","IDS_LEFT_POWER_OUTDOOR");
+        sH("continPlay","IDS_VIDEO_PLAY_CONTINUE");
+		sH("cruise_path","IDS_LEFT_CRUPATH");sH("color_default","IDS_DEFAULT");sT("LVRcA","IDS_BTN_REC");sT("LVRc","IDS_LEFT_STR");
+		sT("LVCapture", "IDS_ALARM_CAPTIMG"); sH("lab_irOn", "IDS_OTHER_ON"); sH("lab_irOff", "IDS_OTHER_OFF"); sT("live_fw", "IDS_LEFT_FW"); sH("LeftStrType", "IDS_LEFT_STRTYPE");
+		sH("lab_live_jx", "IDS_LEFT_MIRROR"); sH("lab_live_fz", "IDS_LEFT_TURN");sH("common_record", "IDS_RC_ALARM");
+		sH("all_record", "IDS_RC_ALLRECORD");sH("plan_record", "IDS_RC_PLANRECORD");
+		rP("cfgmune_1","IDS_STATUS_PARAM");sH("dev_ses","IDS_SHELTER_PARAM");rP("cfgmune_2","IDS_CHINFO_RECORD");rP("cfgmune_3","IDS_NET_PARAM");rP("cfgmune_4","IDS_ALARM_PARAM");		
+		rP("cfgmune_5","IDS_AV_PARAM");rP("cfgmune_6","IDS_RECORD_PARAM");rP("cfgmune_7","IDS_PTZ_SPARAM");rP("cfgmune_8","IDS_PATH_PARAM");rP("cfgmune_9","IDS_FIRWARE");
+		rP("cfgmune_10","IDS_SYSTEM_PARAM");sH("alarm_mv","IDS_DEV_MOTIONDETECTALARM");sH("alarm_sud","IDS_DEV_SOUNDALARM");sH("alarm_io","IDS_ALARM_IO");sH("alarm_temperature","IDS_ALARM_TEMPERATRUE");sH("av_base","IDS_AV_BASE");sH("av_osd","IDS_AV_OSD"); sH("av_captur","IDS_BTN_CAP");sH("av_irled", "IDS_BTN_IRLED");
+        sH("av_lens", "IDS_AV_SCENE");
+	    rP("cfgmune_11","IDS_LEFT_MUNU_CHILD_MUSIC");sH("child_music","IDS_CHILD_MUSIC_LIST");
+        rP("cfgmune_12", "IDS_SET_GUID");sH("set_guid", "IDS_SET_GUID");
+		sH("av_mask", "IDS_AV_MASK");
+		sH("bs_base","IDS_BASE_DEVNAME");sH("bs_email","IDS_BS_EMAILSET");sH("bs_time","IDS_BS_TIME");sH("usr_base","IDS_BS_USRBASE");sH("dev_info","IDS_DEV_INFO");sH("bs_multi","IDS_BS_MULTI");
+		sH("dev_log","IDS_DEV_LOG");sH("dev_ses","IDS_DEV_SESSION");sH("dev_state","IDS_DISPLAY_PARAM");sH("fw_ip","IDS_FW_IP");sH("net_ddns","IDS_NET_DDNS");
+		sH("net_ip","IDS_NET_NETIP");sH("net_pppoe","IDS_NET_PPPOE");sH("net_wifi","IDS_NET_WIFI");sH("net_upnp","IDS_NET_UPNP");sH("net_port","IDS_NET_PORT");sH("net_p2p","IDS_NET_P2P");sH("path_ftp","IDS_PATH_FTP");
+		sH("net_cloud","IDS_NET_CLOUD");sH("net_push","IDS_NET_PUSH");
+		sH("path_gx","IDS_PATH_SHARDIR");sH("ptz_ctrack","IDS_PTZ_CTRACK");sH("ptz_rate","IDS_PTZ_RATE");sH("ptz_initcof","IDS_PTZ_INIT_COF");sH("ptz_485","IDS_PTZ_485_COF");sH("rc_alarm","IDS_RC_ALARM");sH("rc_jh","IDS_RC_PLANV");sH("rc_path","IDS_RC_VPRATH");
+		sH("rc_plan","IDS_RC_PLAN");
+		sH("sys_dr", "IDS_SYS_DR"); sH("sys_updata", "IDS_SYS_UPDATE");sH("sys_patch", "IDS_SYS_UPDATE_PATHCH"); sH("sys_hf", "IDS_SYS_HF"); sH("sys_cq", "IDS_SYS_CQ"); $("#RcSearch").attr("title", lg.get("IDS_LEFT_SERCH")); $("#RcReload").attr("title", lg.get("IDS_LEFT_RELOAD"));
+		sH("cruise_1", "IDS_TIP_CRUISE"); sH("preset_2", "IDS_TIP_PRESET"); sH("LED_3", "IDS_BS_REDLAMP"); sH("colar_4", "IDS_LEFT_COLOR"); sH("serword", "IDS_LEFT_SERWORD"); sH("lab_zoomIn", "IDS_Z_ZOOMIN"); sH("lab_zoomOut", "IDS_Z_ZOOMOUT");
+        sH("music_5","IDS_LEFT_MUNU_CHILD_MUSIC");
+		sH("rc_localalarm","IDS_RC_LOCAL_ALARM");sH("rc_sdmanage","IDS_RC_SDCARD_MANAGE");
+        sH("music_list_title","IDS_LEFT_PLAY_LIST");
+        $("#divReloadMusic").attr("title", lg.get("IDS_LEFT_RELOAD"));
+		//sH("labConTitle","IDS_LOGIN_WORD4");
+		//此处作判断，是否加载有些左边菜单或者控件
+        if (gVar_first.p2pFlag == 0) {
+            $("#net_p2p").remove(); 
+        } 
+        
+        if (gVar_first.hasPrivacyZone == -1) {
+            $("#av_mask").remove(); 
+        } 
+        if(gVar_first.ptFlag == 0){
+            $("#cruise_1").css("display", "none");   
+            $("#preset_2").css("display", "none");
+		    $("#m_1").css("display", "none");   
+            $("#m_2").css("display", "none");    
+            $("#leftptz").css("display", "none");   
+            $("#cfgmune_7").css("display", "none");   
+
+        }
+        
+        if(gVar_first.rs485Flag == 1){
+            $("#cruise_1").css("display", "");   
+            //$("#preset_2").css("display", ""); 
+		    if($("#cruise_1").attr("isdown") == 0) $("#m_1").css("display","");
+            $("#leftptz").css("display", "");   
+            $("#cfgmune_7").css("display", "");   
+        
+            $("#ptz_ctrack").remove();      
+            $("#ptz_initcof").remove();
+            $("#ptz_485").css("display", "");    
+        }
+        
+        if (gVar_first.wifiType == 0) {
+            $("#net_wifi").remove();
+        }
+        
+        if (gVar_first.zoomFlag == 0) {
+            $("#lab_zoomIn").css("display", "none");$("#zoomIn").css("display", "none");
+            $("#lab_zoomOut").css("display", "none");$("#zoomOut").css("display", "none");
+        }
+        
+        if (gVar_first.sdFlag == 0) {
+            $("#PlayBackMenu").remove();
+            $("#rc_sdmanage").remove();
+            //$("#rc_alarm").remove();  
+        }
+
+        if ((gVar_first.reserve1 & (0x01)) == 0) {
+            $("#net_cloud").remove();
+        }
+        
+        if (((gVar_first.reserve1 & (0x01<<1))>>1) == 0) {
+           $("#net_push").remove(); 
+        }
+		
+		
+		if ((gVar_first.reserve2 >> 1 & 0x01) == 0)
+		{
+			$("#alarm_sud").remove();
+		}
+		
+		if (!(gVar_first.reserve2 & (0x1 << 2)))
+		{
+			$("#alarm_temperature").remove();
+			$("#liveTemperature").remove();
+		}
+		
+        
+         if (gVar_first.ioAlarmFlag ==0) {
+            $("#alarm_io").remove();
+         }
+
+        if((gVar_first.reserve4 & 0x01) == 0){  // Lens Distortion Correction Flag   1-Yes 0-No
+            $("#av_lens").remove();
+        }
+        
+        if((gVar_first.reserve4 >>1 & 0x01) == 1){  //part 1080P Dev not suppot record to sd card.  1-not support to sd  0-support
+            $("#rc_plan").remove();
+        }
+	
+        if(gVar_first.modelName == "FosBaby"){
+            $("#net_pppoe").remove();
+            if (isSoftAPMode == 1){
+                $("#net_ip").remove();
+                $("#net_port").remove();
+                $("#net_ddns").remove();
+                $("#net_upnp").remove();
+                $("#bs_email").remove();
+                $("#path_ftp").remove();
+                $("#net_cloud").remove();
+                if(LoadLeftPage != BB){
+                    $("#bs_multi").remove();
+                }
+                if (((gVar_first.reserve1 & (0x01 << 1)) >> 1) != 0) {
+                    $("#net_push").remove();
+                }
+            }
+        }
+        
+          //登录后，右上角显示的内容
+        if (cur_Dev == "HD818W" ) {
+            sH("labConTitle","IDS_LOGIN_WORD8");//室内PTZ机 但是中文时要显示高清[网络]摄像机 - -！
+        }else{
+        
+             if( gVar_first.outdoorFlag ==0 && gVar_first.ptFlag ==1 && gVar_first.zoomFlag == 1){
+                sH("labConTitle","IDS_LOGIN_WORD4");  //室内 ptz机
+             }else if (gVar_first.outdoorFlag ==0 && gVar_first.ptFlag ==1 && gVar_first.zoomFlag == 0) {
+                sH("labConTitle","IDS_LOGIN_WORD5");  //室内 PT机
+             }else if (gVar_first.outdoorFlag ==1) {
+                sH("labConTitle","IDS_LOGIN_WORD6"); //室外机 eg.04W
+             }else if(gVar_first.outdoorFlag ==0 && gVar_first.ptFlag ==0 && gVar_first.zoomFlag == 0){
+                sH("labConTitle","IDS_LOGIN_WORD7");//室内IP摄像机 08P
+             }
+        }
+        
+	}else if(pageName =="login"){
+		//raysee.innerHTML=lg.get("IDS_RAYSEE");//Ray See
+		//versions.innerHTML=lg.get("IDS_IE_VERSION");//IE端V1.1版
+		sH("login_reset","IDS_LOGIN_RESET");/*sH("userlogin","IDS_USER_LOGIN");*/sH("language","IDS_LANGUAGE");sH("usernames","IDS_LOGIN_NAME");sH("password","IDS_SERVERINFO_PSW");
+		sH("streamport","IDS_SYS_MEDIOP");sH("streamcode","IDS_LOGIN_BITRATE");sOH("login_ml",0,"IDS_CODE_STREAM_01");sOH("login_ml",1,"IDS_CODE_STREAM_02");
+		sH("rememberPS","IDS_REM_PASSWORD");sH("openpiew","IDS_PREVIEWOPENSTREAM");sH("login_ok","IDS_SERVER_LOGIN");sH("loginword","IDS_LOGIN_WORD9");
+		
+				 //登录界面，右上角显示的内容
+//        if (cur_Dev == "HD818W" ) {
+//            sH("loginword","IDS_LOGIN_WORD8");//室内PTZ机 但是中文时要显示高清[网络]摄像机 - -！
+//        }else{
+//        
+//             if( IsInArray(isindoorDev,cur_Dev) && IsInArray(ytDev,cur_Dev) && IsInArray(zoomDev,cur_Dev) ){
+//                sH("loginword","IDS_LOGIN_WORD4");  //室内 ptz机
+//             }else if (IsInArray(isindoorDev,cur_Dev) && IsInArray(ytDev,cur_Dev) && !IsInArray(zoomDev,cur_Dev)) {
+//                sH("loginword","IDS_LOGIN_WORD5");  //室内 PT机
+//             }else if (!IsInArray(isindoorDev,cur_Dev)) {
+//                sH("loginword","IDS_LOGIN_WORD6"); //室外机 eg.04W
+//             }else if(IsInArray(isindoorDev,cur_Dev) && !IsInArray(ytDev,cur_Dev) && !IsInArray(zoomDev,cur_Dev)){
+//                sH("loginword","IDS_LOGIN_WORD7");//室内IP摄像机 08P
+//             }
+//        }
+	}else if(pageName == "login_user"){
+        sH("loginword","IDS_LOGIN_WORD9");
+        sH("loginUser","IDS_LOGIN_NAME");
+        sH("loginNewUser","IDS_BS_NEW_USERNAME");
+        sH("loginNewPwd","IDS_BS_NEWPWD");
+        sH("loginPwdStrenth","IDS_PWD_TESTLEV");
+        sH("loginPwdConfirm","IDS_BS_NEWPWDAG");
+        sH("btnLoginEdit","IDS_BS_MODIFY");
+    }else if(pageName == "set_guid"){
+        sH("divSetGuidTitle", "IDS_SET_GUID");
+        document.getElementById("divGuidTbTitle").innerHTML = lg.get("IDS_SET_GUID") + " - " + lg.get("IDS_SET_GUID_BEGIN");
+        sV("btnPre", "IDS_PREV_STEP");sV("btnNext", "IDS_NEXT_STEP");sV("btnFinish", "IDS_FINISH_STEP");
+        sH("divWelcomeIPC", "IDS_SET_GUID_IPC");sH("divWelcomeDetail", "IDS_SET_GUID_IPC_DETAIL");
+    }else if(pageName == "dev_info"){
+		sV("devinfoRf","IDS_RE_REFRESH");sH("DevInfobs","IDS_DEV_INFO");sH("DevIfSoftP","IDS_BASE_SOFTPLUGINVER");sH("DevIfSoftW","IDS_BASE_SOFTWEBVER");sH("DevIfName","IDS_DEV_NAME");
+		sH("DevIfD","IDS_DEVICE");sH("DevIfDName","IDS_BASE_DEVNAME");sH("DevIfMAX","IDS_DEV_MAX");sH("DevIfT","IDS_DEV_Time");sH("DevIfRC","IDS_DEV_RC");sH("DevIfHV","IDS_BASE_HARDVER");
+	}else if(pageName == "dev_state"){
+		sV("devstateRf","IDS_RE_REFRESH");sH("DevStatet","IDS_DISPLAY_PARAM");sH("IDS_DEV_ALARMSTATE","IDS_DEV_ALARMSTATE");sH("IDS_DEV_IOALARMSTATE","IDS_DEV_IO_ALARMSTATE");/*sH("IDS_DEV_MOTIONDETECTALARM","IDS_DEV_MOTIONDETECTALARM");sH("IDS_DEV_SOUNDALARM","IDS_DEV_SOUNDALARM");*/
+		sH("IDS_DEV_RECORD","IDS_DEV_RECORD");sH("IDS_DEV_SDSTATE","IDS_DEV_SDSTATE");sH("IDS_DEV_SDFS","IDS_DEV_SDFS");sH("IDS_DEV_SDTS","IDS_DEV_SDTS");sH("IDS_DEV_NTPSTATE","IDS_DEV_NTPSTATE");
+		sH("IDS_DEV_DDNSSTATE","IDS_DEV_DDNSSTATE");sH("IDS_DEV_UPNPSTATE","IDS_DEV_UPNPSTATE");sH("dstatewifi","IDS_DEV_WIFISTATE");sH("dstateled","IDS_DEV_LEDSTATE");
+        sH("thSoudAlarmStat", "IDS_DEV_SOUND_ALARMSTATE");sH("thTempAlarmStat", "IDS_DEV_TEMPERATURE_ALARMSTATE");
+        if (gVar_first.sdFlag ==0) {
+            $("#IDS_DEV_SDSTATETR").css("display", "none");
+            $("#IDS_DEV_SDFSTR").css("display", "none");
+            $("#IDS_DEV_SDTSTR").css("display", "none");     
+        }
+        if(isSoftAPMode == 1){
+            $("#trDevNTP").css("display", "none");
+            $("#trDevDDNS").css("display", "none");
+            $("#trDevUPNP").css("display", "none");
+        }
+	}else if(pageName == "dev_ses"){
+		sV("devsesRf","IDS_RE_REFRESH");sH("IDS_DEV_IP","IDS_DEV_IP");sH("devSesUSRNAME","IDS_LOGIN_NAME");sH("DevSession","IDS_DEV_SESSION");
+	}else if(pageName == "dev_log"){
+		sV("devlogRf","IDS_RE_REFRESH");sH("DevLogt","IDS_DEV_LOG");sH("devlogNo.","IDS_DEV_LOGNO");sH("devlogTime","IDS_LEFT_TIM");sH("devlogUser","IDS_DEV_LOGUSER");sH("devloglog","IDS_DEV_LOG");
+	}else if(pageName == "fw_ip"){
+		sV("fwipRf","IDS_RE_REFRESH");sV("fwIpSave","IDS_CRUISE_SAVE");sH("FWIPt","IDS_FW_IP");sH("FwIPIsEb","IDS_FW_IPISEB");sH("FwIPrule","IDS_FW_IP");sH("FwIPNo","IDS_FW_IPNO");sH("FwIPIs","IDS_FW_IPIS");
+		
+	}else if(pageName == "alarm"){
+         sV("alarmRf", "IDS_RE_REFRESH"); sV("AlarmSave", "IDS_CRUISE_SAVE"); sH("AmTrger", "IDS_ALARM_TRGER"); sH("AmTactics", "IDS_ALARM_TACTICS"); sH("AmMoSX", "IDS_ALARM_MVMOSX"); sH("rcAlarmNotice", "IDS_RCPLAN_TIP4");
+		//$("#AmRing").prepend(lg.get("IDS_ALARM_RING"));
+        sH("AmRing","IDS_ALARM_RING");
+		$("#AmSedEmail").prepend(lg.get("IDS_ALARM_SEDEMAIL"));
+		$("#AmCaptImg").prepend(lg.get("IDS_ALARM_CAPTIMG"));
+		$("#AmRecord").prepend(lg.get("IDS_ALARM_RECORD"));
+		$("#AmIOOutput").prepend(lg.get("IDS_ALARM_IOOUTPUT"));
+		sH("AmClearIO","IDS_ALARM_IOOUTPUTCLEAR");
+		sH("AmEleLevelT","IDS_ALARM_CD");sH("AmEleLowLevel","IDS_ALARM_DCD");sH("AmEleHighLevel","IDS_ALARM_GCD");
+		sH("AmTemperatureT", "IDS_ALARM_TTEMPERATRUE_RANGE");sH("AmTemperatureL", "IDS_ALARM_TTEMPERATRUELOW");sH("rcTempTips","IDS_ALARM_TTEMPERATRUETIPS");sH("rcTempTips_F", "IDS_ALARM_TTEMPERATRUETIPS_F");
+		sH("AmSensitivity","IDS_ALARM_SENSIT");sH("AmLowSensit","IDS_ALARM_LOWSENSIT");sH("AmMidSensit","IDS_ALARM_MIDSENSIT");sH("AmHighSensit","IDS_ALARM_HIGHSENSIT");sH("AmZC","IDS_ALARM_ZC");sH("AmCapttime","IDS_ALARM_TIME");
+		sH("AmLowerSensit","IDS_ALARM_LOWER_SENSIT");sH("AmLowestSensit","IDS_ALARM_LOWEST_SENSIT");
+		sH("Am_OutMove","IDS_ALARM_MOVEOUT");
+	    sH("divAlarmPCSound","IDS_RC_SOUNDALARM_AS_PC");
+        //sH("rcPCSoundAlarmTips", "IDS_RC_PCSOUND_ALARM_TIPS");sH("AmToPhone","IDS_ALARM_TOPHONE");
+        sH("divAlarmSnapTips", "IDS_ALARM_SNAP_TIPS");
+		sH("divAlarmRecordTips", "IDS_ALARM_RECORD_TIPS");
+		if (Qqx == 0) $("#AlarmSave").remove();
+		else if (Qqx == 1) $("#AlarmSave").remove();
+		else{}
+
+		if (gVar_first.audioFlag ==0){
+		    $("#AmRing").remove();
+		    $("#AmLink1").remove();
+		    document.getElementById("divAlarmPCSound").style.marginLeft = "0px";
+		}
+		if ((gVar_first.reserve2 & 0x01) == 0) 
+		{
+			$("#Am_OutMove").remove();
+			$("#AmOutMove").remove();
+		}
+
+        if (((gVar_first.reserve1 & (0x01<<1))>>1) == 0) {  //if hasn't the function cloud push
+            $("#AmToPhoneTR").css("display", "none");
+        }
+	}else if(pageName == "rc_jh"){
+		sH("AlarmT","IDS_RC_PLANV");sH("AlarmIsEb","IDS_RC_ISENV");sH("AmVCBitmap","IDS_RC_VTEDIT");
+	}else if(pageName == "alarm_sud"){
+		sH("AlarmT","IDS_DEV_SOUNDALARM");sH("AlarmIsEb","IDS_ALARM_ISSUDEB");sH("AmVCBitmap","IDS_ALARM_VCBITMAP");
+	}else if(pageName == "alarm_mv"){
+		sH("AlarmIsEb","IDS_ALARM_ISMVEB");sH("AlarmT","IDS_DEV_MOTIONDETECTALARM");sH("AmVCBitmap","IDS_ALARM_VCBITMAP");
+	}else if(pageName == "alarm_io"){
+	    sH("AlarmT","IDS_ALARM_IO");sH("AlarmIsEb","IDS_ALARM_ISEB");sH("AmVCBitmap","IDS_ALARM_VCBITMAP");
+	}else if (pageName == "alarm_temperature") {
+	    sH("AlarmT", "IDS_ALARM_TEMPERATRUE"); sH("AlarmIsEb", "IDS_ALARM_ISTEMPERATRUEEB"); sH("AmVCBitmap", "IDS_ALARM_VCBITMAP");
+	}
+	else if (pageName == "av_base") {
+	    sH("AvBsMainStreamT", "IDS_AV_BASE_MAINSTRAM_CONFIG");
+	    sV("avbaseRf", "IDS_RE_REFRESH"); sV("avBsSave", "IDS_CRUISE_SAVE"); sH("AvBs", "IDS_AV_BASE"); sH("AvBsStType", "IDS_AV_STTYPE"); sH("AvBsRsltion", "IDS_AV_RSLTION");
+		sH("AvBsbRate","IDS_AV_BRATE");sH("AvBsfRate","IDS_AV_FRATE");sH("AvBsGop","IDS_AV_GOP");
+
+		sH("AvBsSubStreamT", "IDS_AV_BASE_SUBSTRAM_CONFIG");
+		sH("AvBsSubStType", "IDS_AV_STTYPE"); sH("AvBsSubRsltion", "IDS_AV_RSLTION");
+		sH("AvBsSubbRate", "IDS_AV_BRATE"); sH("AvBsSubfRate", "IDS_AV_FRATE"); sH("AvBsSubGop", "IDS_AV_GOP");
+        sH("thAvBsisVBRT", "IDS_AV_VBR"); sH("optisVBRNo", "IDS_AV_NO"); sH("optisVBRYes", "IDS_AV_IS");
+        sH("divAvBaseNight", "IDS_AV_BASE_NIGHT_MODE");
+        sH("avBST_0", "IDS_AV_BASE_DISTINCT_MODE");
+        sH("avBST_1", "IDS_AV_BASE_BALANCE_MODE");
+        sH("avBST_2", "IDS_AV_BASE_SMOOTH_MODE");
+        sH("avBST_3", "IDS_AV_BASE_CUSTOM_MODE");
+        sH("avBSST_0", "IDS_AV_BASE_DISTINCT_MODE");
+        sH("avBSST_1", "IDS_AV_BASE_BALANCE_MODE");
+        sH("avBSST_2", "IDS_AV_BASE_SMOOTH_MODE");
+        sH("avBSST_3", "IDS_AV_BASE_CUSTOM_MODE");
+         if (Qqx == 0)
+		{
+			$("#avBsSave").remove();
+		}else if (Qqx == 1)
+		{
+			$("#avBsSave").remove();
+		}
+		else{}
+	}else if(pageName == "av_osd"){
+		sV("avosdRf","IDS_RE_REFRESH");sV("avOsdSave","IDS_CRUISE_SAVE");/*sH("AvOSD", "IDS_AV_OSD");*/sH("AvOsdIsTS","IDS_AV_IS");sH("AvOsdIsDN","IDS_AV_IS");sH("AvOsdNoTS","IDS_AV_NO");
+		sH("AvOsdNoDN","IDS_AV_NO");sH("avOsdIsEnTime","IDS_AV_ISENIIME");sH("avOsdIsEnDName","IDS_AV_ISENDNAME");sH("avOsdDispPos","IDS_AV_DISPPOS");
+		sH("avOsdUpLeft","IDS_PTZ_LEFTUP");sH("avOsdBotLeft","IDS_PTZ_LEFTDOWN");sH("avOsdUpRight","IDS_PTZ_RIGHTUP");sH("avOsdBotRight","IDS_PTZ_RIGHTDOWN");
+		if (Qqx == 0) $("#avOsdSave").remove();
+		else if (Qqx == 1) $("#avOsdSave").remove();
+		else{}
+	}else if(pageName == "av_mask"){
+        sV("avmaskRf", "IDS_RE_REFRESH"); sV("avmaskSave", "IDS_CRUISE_SAVE"); sH("Avo_Mask", "IDS_AV_MASK"); 
+        sH("avSheDel", "IDS_BS_DEL"); sH("avSheback", "IDS_ALARM_MVMOSX"); sH("avShbj", "IDS_AV_SHBJ");
+        sH("avOsdIsEnShelt","IDS_AV_ISENSHELT");sH("AvOsdIsMask","IDS_AV_IS");sH("AvOsdNoMask","IDS_AV_NO");
+        if (Qqx == 0) $("#avmaskSave").remove();
+        else if (Qqx == 1) $("#avmaskSave").remove();
+        else { }
+    }else if(pageName == "av_captur"){
+		sV("avcapturRf","IDS_RE_REFRESH");sV("avCaptSave","IDS_CRUISE_SAVE");sH("AvCapturt","IDS_BTN_CAP");sH("AvCaptImgQua","IDS_AV_IMGQUA");sH("AvCaptPath","IDS_AV_PATH");sH("AvCaptSDCard","IDS_AV_SDCARD");
+        sH("AvCapSDAndCloud", "IDS_SD_AND_CLOUD");
+        sH("divCapPathTips", "IDS_SNAP_CLOUD_TIPS");
+        sH("divCapPathSoftTips", "IDS_SOFTAP_NO_FTP_CLOUD_TIPS");
+		/*sH("AvCaptSFolder","IDS_AV_SFOLDER");*/sOH("avcaqua",0,"IDS_ALARM_LOWSENSIT");sOH("avcaqua",1,"IDS_ALARM_MIDSENSIT");sOH("avcaqua",2,"IDS_ALARM_HIGHSENSIT");
+		sH("TAm_Interval","IDS_SNAP_INTERVAL");sH("TAlarmIsEb","IDS_SNAP_ENABLE");
+		sH("TAmVCBitmap","IDS_AV_CAPTIMEEDIT");
+		if (Qqx == 0) $("#avCaptSave").remove();
+		else if (Qqx == 1) $("#avCaptSave").remove();
+		else{}
+	}else if (pageName == "av_irled") {
+        sV("avirledRf", "IDS_RE_REFRESH"); sV("avirledSave", "IDS_CRUISE_SAVE"); sH("AvIrSchedule", "IDS_IR_CLOSET"); sH("ASS_Add", "IDS_BS_ADD"); sH("ASS_Sub2", "IDS_BS_DEL"); sH("ASS_Sub3", "IDS_BS_DEL");
+        /*sH("irAutoEnb", "IDS_BS_AUTO"); sH("irManualEnb", "IDS_BS_MANUAL"); sH("irScheduleEnb", "IDS_BS_TIMING");sH("av_lab_irOn", "IDS_OTHER_ON"); sH("av_lab_irOff", "IDS_OTHER_OFF");*/
+        sH("irScheduleT", "IDS_IR_SCHEDULE");
+        sH("av_ir_from1", "IDS_FROM"); sH("av_ir_from2", "IDS_FROM"); sH("av_ir_from3", "IDS_FROM"); sH("av_ir_to1", "IDS_TO"); sH("av_ir_to2", "IDS_TO"); sH("av_ir_to3", "IDS_TO");
+        sH("AvIrledt", "IDS_BTN_IRLED");
+	}else if (pageName == "av_lens") {
+        sV("avlensRf", "IDS_RE_REFRESH"); sV("avlensSave", "IDS_CRUISE_SAVE"); sH("thAvLensPara", "IDS_AV_SCENE_LEVEL");
+        sH("optLensLow", "IDS_ALARM_LOWSENSIT"); sH("optLensMiddle", "IDS_ALARM_MIDSENSIT"); sH("optLensHigh", "IDS_ALARM_HIGHSENSIT");
+        sH("divAvLensTips", "IDS_AV_SCENE_TIPS");
+        sH("legAvLens", "IDS_AV_SCENE");
+    }
+    else if(pageName == "bs_email"){
+		sV("bsemailRf","IDS_RE_REFRESH");sH("baemailword","IDS_BS_EMAILWORD");sV("bsElSave","IDS_CRUISE_SAVE");sH("BsEmailIs","IDS_AV_IS");sH("BsEmailNo","IDS_AV_NO");sH("BsEmailSet","IDS_BS_EMAILSET");sH("bsElIsEnUse","IDS_BS_ISENUSE");
+		sH("bsElSMTPAd","IDS_BS_SMTPAD");sH("bsSMTPNAME_Tip","IDS_SMTPNAME_TIP");sH("bsElSMTPPort","IDS_BS_SMTPPORT");sH("bsElIsEnLogVer","IDS_BS_ISENLOGVER");sH("bsElSMTPUsrName","IDS_BS_SMTPUSRNAME");sH("bsElSMTPPassword","IDS_BS_SMTPPASSWORD");
+		sH("bsElSender","IDS_BS_SENDER");sH("bsElReciever1","IDS_BS_RECIEVER1");sH("bsElReciever2","IDS_BS_RECIEVER2");sH("bsElReciever3","IDS_BS_RECIEVER3");sH("bsElReciever4","IDS_BS_RECIEVER4");sH("bsElTest","IDS_BS_TEST");sH("bsEprot","IDS_BS_PROT");sH("BsEmailNon","IDS_NET_WIFIPNO");sH("bsElword","IDS_BS_WORD");
+        sH("bsEmailUsrnameTip","IDS_BS_EMAIL_USRNAME_TIP");sH("bsEmailPwdTip","IDS_BS_EMAIL_PWD_TIP");sH("bsEmailReceiverTip","IDS_BS_EMAIL_RECEIVER_TIP");
+		if (Qqx == 0) {$("#bsElSave").remove();$("#bsElTest").attr("disabled","disabled");}
+		else if (Qqx == 1) {$("#bsElSave").remove();$("#bsElTest").attr("disabled","disabled");}
+		else{}
+	}else if(pageName == "bs_base"){
+        sV("bsbaseRf", "IDS_RE_REFRESH"); sV("bsBsSave", "IDS_CRUISE_SAVE"); 
+        if(lanPage != "set_guid"){sH("BsBaset", "IDS_BASE_DEVNAME");}
+        sH("bsBsDevName", "IDS_BASE_DEVNAME");
+        if (gVar_first.N_language !=2) sH("bsBsDevNameTip", "IDS_DEVNAME_TIPS");
+        else sH("bsBsDevNameTip", "IDS_DEVNAME_TIPS2");
+		if (Qqx == 0) $("#bsBsSave").remove();
+		else if (Qqx == 1) $("#bsBsSave").remove();
+		else{}
+	}else if(pageName == "bs_time"){
+		sV("bstimeRf","IDS_RE_REFRESH");sV("bsTSave","IDS_CRUISE_SAVE");
+        if(lanPage != "set_guid"){sH("BsTimet","IDS_BS_TIME");}
+        sH("BsTimeZone","IDS_BS_TIMEZONE");sH("bsTIsEnNTP","IDS_BS_ISENNTP");sH("bsTNTPAddrS","IDS_BS_NTPADDRS");
+		sH("bsTInputNTP","IDS_BS_INPUTNTP");sH("bsTDateS","IDS_BS_DATES");sH("bsTYMD","IDS_BS_YMD");sH("bsTDMY","IDS_BS_DMY");sH("bsTMDY","IDS_BS_MDY");sH("bstimeLoad","IDS_BS_TIMELOAD");
+		sH("bsTTimeS", "IDS_BS_TIMES"); sH("bsT12", "IDS_BS_12H"); sH("bsT24", "IDS_BS_24H"); sH("bsTIsEnUseDST", "IDS_BS_ISENUSEDST"); sH("bsTDaylight", "IDS_BS_DAYLIGHT_AHEAD");
+		$("#bsTSysTime").prepend(lg.get("IDS_BS_SYSTIME"));
+		sH("bsTDstMinute","IDS_MINUTE");sOH("bsTNTPS1",0,"IDS_BS_AUTO");
+		if (gVar_first.N_language != 2) {
+		    $("#bsTUseDST").remove();
+		    $("#bsTIsEnUseDST").remove();
+		    $("#bsTDST").remove();
+		}
+		if (Qqx == 0) $("#bsTSave").remove();
+		else if (Qqx == 1) $("#bsTSave").remove();
+		else{}
+	}else if(pageName == "usr_base"){
+		sV("usrbaseRf","IDS_RE_REFRESH");sH("usrnom","IDS_URS_NO.");sH("usrusr","IDS_LOGIN_NAME");sH("usrright","IDS_BS_RIGHT");sH("UsrBaset","IDS_BS_USRBASE");sH("usrBsModifyPwd","IDS_BS_MODIFYPWD");sH("usrBsUseName","IDS_LOGIN_NAME");sH("usrBsPassword","IDS_SERVERINFO_PSW");sH("usrBsNPassword","IDS_BS_NEWPWD");sH("usrBsNPasswordAG","IDS_BS_NEWPWDAG");
+		sH("chkResultTD","IDS_PWD_TESTLEV");
+		sH("chkResultaddTD","IDS_PWD_TESTLEV");
+		sH("UsrBaseRight","IDS_BS_RIGHT");sH("usrBsRight0","IDS_BS_RIGHT0");sH("usrBsRight1","IDS_BS_RIGHT1");sH("usrBsRight2","IDS_BS_RIGHT2");sH("usrBsAdd","IDS_BS_ADD");sH("usrBsXg","IDS_BS_MODIFY");sH("usrBsDel","IDS_BS_DEL");
+		sH("usrBsModifyUsername","IDS_CHANGE_USERNAME");sH("usrBsNewUsernameT","IDS_BS_NEW_USERNAME");
+		sH("bsBaseUsrNameTip", "IDS_BS_BASE_USRNAME_TIP"); //sH("bsBasePwdTip","IDS_BS_BASE_PWD_TIP");
+		document.getElementById("bsBasePwdTip").innerHTML = lg.get("IDS_BS_BASE_PWD_TIP") + " ~ ! @ # % ^ * ( ) _ + { } : \"| &lt; > ? ` - ; ' \\ , . /";
+		if (Qqx == 0)
+		{
+			$("#usrBsAdd").remove();
+			$("#usrBsDel").remove();
+		}else if (Qqx == 1)
+		{
+			$("#usrBsAdd").remove();
+			$("#usrBsDel").remove();
+		}
+		else{}
+	}else if(pageName == "bs_multi"){
+	sV("bsmultiRf", "IDS_RE_REFRESH"); /*sH("bsmultiSave","IDS_CRUISE_SAVE");*/sH("bs_mullist", "IDS_BS_MULLIST"); sH("bsmulrf", "IDS_RE_REFRESH");sH("Multidevice", "IDS_BS_MULTI");
+		for(var i=1; i<=9; i++) sH("bsmul"+i,"IDS_BS_MUL"+i);
+		sH("bs1_text","IDS_BS1_TEXT");
+		for(var i=2; i<=9; i++){
+		    sH("bs" + i + "_text", "IDS_NET_WIFIPNO"); sH("bs" + i + "_name", "IDS_BASE_DEVNAME"); sH("bs" + i + "_host", "IDS_BS2_HOST"); sH("bs" + i + "_port", "IDS_SYS_HTTPP"); sH("bs" + i + "_Mport", "IDS_SYS_MEDIOP"); sH("bs" + i + "_user", "IDS_LOGIN_NAME"); sH("bs" + i + "_pwd", "IDS_SERVERINFO_PSW"); sH("bs" + i + "_addput", "IDS_BS2_ADDPUT"); sH("bs" + i + "_delput", "IDS_BS_DEL"); sH("bs" + i + "_type", "IDS_DEV_NAME");
+			}
+		    sH("bsmul_word", "IDS_BS_MULWORD"); sH("bsmulUsrNameTip", "IDS_BS_BASE_USRNAME_TIP"); sH("bsmulPwdTip", "IDS_BS_BASE_PWD_TIP");
+		    if (gVar_first.N_language != 2) sH("bsmulDevNameTip", "IDS_DEVNAME_TIPS");
+            else sH("bsmulDevNameTip", "IDS_DEVNAME_TIPS2");
+		if (Qqx == 0)
+		{
+			for(var i=2; i<=9; i++){
+				$("#bs"+i+"_addput").remove();
+				$("#bs"+i+"_delput").remove();
+			}
+		}else if (Qqx == 1)
+		{
+			for(var i=2; i<=9; i++){
+				$("#bs"+i+"_addput").remove();
+				$("#bs"+i+"_delput").remove();
+			}
+		}
+		else{}
+	}else if(pageName == "path_gx"){
+		sV("pathgxRf","IDS_RE_REFRESH");sV("phGxSave","IDS_CRUISE_SAVE");sH("PathGxIs","IDS_AV_IS");sH("PathGxNo","IDS_AV_NO");sH("PathSharDir","IDS_PATH_SHARDIR");sH("phGxAddr","IDS_PATH_SHARADDR");
+		sH("phGxIsEnAAc","IDS_PATH_ISENAAC");sH("phGxAUsrN","IDS_PATH_AUSRN");sH("phGxAPWD","IDS_PATH_APWD");sH("phGxMountR","IDS_PATH_MOUNTR");sH("phGxSpaceS","IDS_PATH_SPACES");sH("pathgxword","IDS_PATH_GXWORD");
+		if (Qqx == 0) $("#phGxSave").remove();
+		else if (Qqx == 1) $("#phGxSave").remove();
+		else{}
+	}else if(pageName == "path_ftp"){
+		sV("pathftpRf","IDS_RE_REFRESH");sH("pathftpword1","IDS_BS_EMAILWORD");sV("phFtpSave","IDS_CRUISE_SAVE");sH("PathFTPt","IDS_PATH_FTP");sH("phFtpAddr","IDS_PATH_FTPADDR");sH("phFtpUsrName","IDS_PATH_FTPUSRNAME");sH("phFtpPWD","IDS_PATH_FTPPWD");sH("phFtpTest","IDS_BS_TEST");sH("pathftpword","IDS_PATH_FTPWORD");sH("phFtpPORT","IDS_NET_PORT");sH("phFtpzb","IDS_PATH_FTPZB");sOH("phFtp_MODE",0,"IDS_PATH_FTPBD");sOH("phFtp_MODE",1,"IDS_PATH_FTPZD");
+		sH("pathFtpAddrTip", "IDS_PATH_FTP_ADDR_TIP");
+		document.getElementById("pathFtpPwdTip").innerHTML = lg.get("IDS_PATH_FTP_PWD_TIP") + " ~ ! @ # $ % ^ * ( ) _ + { } : \" | &lt; > ? ` - ; ' \\ , . /";
+		if (gVar_first.N_language != 2) sH("pathFtpUsrnameTip", "IDS_PATH_FTP_USENAME_TIP2");
+        else sH("pathFtpUsrnameTip","IDS_PATH_FTP_USENAME_TIP");
+		if (Qqx == 0) {$("#phFtpSave").remove();$("#phFtpTest").attr("disabled","disabled");}
+		else if (Qqx == 1) {$("#phFtpSave").remove();$("#phFtpTest").attr("disabled","disabled");}
+		else{}
+	}else if(pageName == "ptz_ctrack"){
+    sV("ptzctrackRf", "IDS_RE_REFRESH"); sV("ptzCTSave", "IDS_CRUISE_SAVE"); sH("ctrack_subN", "IDS_BS_DEL"); sH("ctrack_subP", "IDS_BS_DEL"); sH("ctrack_addN", "IDS_BS_ADD"); sH("ctrack_saveN", "IDS_CRUISE_SAVE"); sH("ctrack_addP", "IDS_BS_ADD"); sH("PTZCtrackt", "IDS_PTZ_CTRACK"); sH("ctrack_save", "IDS_CRUISE_SAVE")
+        sH("ptzCTPreN16", "IDS_PTZ_PREN16"); sH("ptzCTPreN8", "IDS_PTZ_PREN8"); sH("ctrack_subFO", "IDS_PTZ_SUBFO"); sH("ctrack_subDep", "IDS_PTZ_SUBDEP"); sH("ptzCTName", "IDS_PTZ_CTNANE"); sH("ptzMode", "IDS_PTZ_CMODE"); sH("ptzValue", "IDS_PTZ_CLOOP"); sH("ptzLoopT", "IDS_LOOPS"); sH("PTZCtr_OK", "IDS_REBOOT_OK"); sH("PTZCtr_CAN", "IDS_REBOOT_CANCLE");
+        sH("ctPreT", "IDS_PTZ_PREN16"); sH("ctDtT", "IDS_PTZ_DEWLLTIMET");
+        sH("divPtzCtrTimeTips", "IDS_PTZ_CTRACK_TIME_TIPS");
+		if (gVar_first.N_language != 2) sH("ptzCtrNameTip", "IDS_PTZ_CTRNAMETIP");
+        else sH("ptzCtrNameTip", "IDS_PTZ_CTRNAMETIP2");
+        if (Qqx == 0) { $("#ptzCTSave").remove(); $("#ctrack_addN").remove(); $("#ctrack_subN").remove(); $("#ctrack_saveN").remove(); }
+		else if (Qqx == 1) { $("#ptzCTSave").remove(); $("#ctrack_addN").remove(); $("#ctrack_subN").remove(); $("#ctrack_saveN").remove(); }
+		else{}
+	}else if(pageName == "ptz_rate"){
+	    sV("ptzrateRf", "IDS_RE_REFRESH"); sV("PTZRateSave", "IDS_CRUISE_SAVE"); sH("PTZRatet", "IDS_PTZ_RATE"); sH("PTZRateSetUp", "IDS_PTZ_RATESETUP"); sH("PTZRateFast", "IDS_PTZ_RATEFAST"); sH("PTZRateMS", "IDS_PTZ_RATEMS"); sH("PTZRateSlow", "IDS_PTZ_RATESLOW"); sH("PTZRateVFast", "IDS_PTZ_RATEVFAST"); sH("PTZRateVSlow", "IDS_PTZ_RATEVSLOW"); sH("ZRateSetUp", "IDS_Z_RATESETUP"); sH("ZRateFast", "IDS_PTZ_RATEFAST"); sH("ZRateMS", "IDS_PTZ_RATEMS"); sH("ZRateSlow", "IDS_PTZ_RATESLOW");
+		if (Qqx == 0) $("#PTZRateSave").remove();
+		else if (Qqx == 1) $("#PTZRateSave").remove();
+		else{}
+	}else if(pageName == "ptz_initcof"){
+	    sV("ptzinitcofRf","IDS_RE_REFRESH");sV("ptzinitcofSave","IDS_CRUISE_SAVE");sH("PTZInitCoft","IDS_PTZ_INIT_COF");
+        sH("PTZInitCofSet","IDS_PTZ_INIT_MODE");sH("PTZInitNone","IDS_PTZ_INIT_NOTEST");sH("PTZInitNormal","IDS_PTZ_INIT_NORMAL");sH("PTZInitPrePoint","IDS_PTZ_INIT_GOPREPOINT");
+        sH("PTZInitCofSelPre","IDS_PTZ_INIT_PREPOINTSEL");
+        document.getElementById("divPTZInitTips").innerHTML = lg.get("IDS_SYS_CARE") + lg.get("IDS_PTZ_INIT_COF_TIPS");
+    }else if(pageName == "ptz_485"){
+	    sV("ptz485Rf","IDS_RE_REFRESH");sV("ptz485Save","IDS_CRUISE_SAVE");/*sH("PTZ485","IDS_PTZ_485_COF");*/
+        sH("pT485Addr","IDS_PTZ_485_ADDRESS");sH("pT485Protocol","IDS_PTZ_485_PROTOCOL");sH("tT485Baud","IDS_PTZ_485_BAUD");sH("pT485DataBit","IDS_PTZ_485_DATABIT");sH("pT485StopBit","IDS_PTZ_485_STOPBIT");sH("pT485Check","IDS_PTZ_485_CHECK");sH("p485OptNo","IDS_PTZ_485_CHECK_NONE");sH("p485OptOdd","IDS_PTZ_485_CHECK_ODD");sH("p485OptEven","IDS_PTZ_485_CHECK_EVEN");
+	}
+    else if(pageName == "net_ip"){
+		sV("netipRf","IDS_RE_REFRESH");sV("netIpSave","IDS_CRUISE_SAVE");
+        if(lanPage != "set_guid"){sH("NetIPt","IDS_NET_NETIP");}
+        sH("netDhcpToIP","IDS_NET_DHCPTOIP");sH("netIpAddr","IDS_DEV_IP");
+		sH("netIpSubMask","IDS_NET_SUBMASK");sH("netIpGateway","IDS_NET_GATEWAY");sH("netIpPrimDNS","IDS_NET_PRIMDNS");sH("netIpSecDNS","IDS_NET_SECDNS");sH("netipword","IDS_NET_IPWORD");
+		if (Qqx == 0) $("#netIpSave").remove();
+		else if (Qqx == 1) $("#netIpSave").remove();
+		else{}
+	}else if(pageName == "net_ddns"){
+		sV("netddnsRf","IDS_RE_REFRESH");sV("netDDnsSave","IDS_CRUISE_SAVE");sH("NetDdnst","IDS_NET_DDNS");sH("netDDnsIsEn","IDS_NET_DDNSISEN");sH("netDomains","IDS_NET_DOMAINS");
+		sH("netDDnsAdr", "IDS_NET_DDNSADR"); sH("netDDnsUsrN", "IDS_NET_DDNSUSRN"); sH("netDDns_USER_Tip", "IDS_NET_PPPOE_USRNAME_TIP"); /*sH("netDDns_PASSWORD_Tip", "IDS_NET_PPPOE_PWD_TIP");*/ sH("netDDnsPWD", "IDS_NET_DDNSPWD"); sH("netDDnshsk", "IDS_NET_DDNSHSK"); sV("netDDnsrestore", "IDS_NET_RESTORE"); sH("netDDnsFact", "IDS_NET_FACTORY"); sH("netDDnsFact1", "IDS_NET_FACTORY"); sH("netDDnsthird", "IDS_NET_THIRD"); sOH("netDDns_DDNSSERVER", 0, "IDS_NET_WIFIPNO");
+        document.getElementById("netDDns_PASSWORD_Tip").innerHTML = lg.get("IDS_NET_PPPOE_PWD_TIP") + " ~ ! @ # $ % ^ * ( ) _ + { } : \" | &lt; > ? ` - ; ' \\ , . /";
+		if (Qqx == 0) $("#netDDnsSave").remove();
+		else if (Qqx == 1) $("#netDDnsSave").remove();
+		else{}
+	}else if(pageName == "net_pppoe"){
+		sV("netpppoeRf","IDS_RE_REFRESH");sV("netPPPoESave","IDS_CRUISE_SAVE");sH("NetPppoet","IDS_NET_PPPOE");sH("netPPPoEIsEnUse","IDS_NET_PPPOEISENUSE");sH("netPPPoEAcc","IDS_NET_PPPOEACC");sH("netPPPoEPWD","IDS_NET_PPPOPWD");
+		//sH("netpppoeword","IDS_NET_PPPOEWORD");
+        sH("netPppoeUsrnameTip","IDS_NET_PPPOE_USRNAME_TIP");/*sH("netPppoePwd","IDS_NET_PPPOE_PWD_TIP");*/
+        document.getElementById("netPppoePwd").innerHTML = lg.get("IDS_NET_PPPOE_PWD_TIP") + " ~ ! @ # $ % ^ * ( ) _ + { } : \" | &lt; > ? ` - ; ' \\ , . /";
+		if (Qqx == 0) $("#netPPPoESave").remove();
+		else if (Qqx == 1) $("#netPPPoESave").remove();
+		else{}
+	}else if(pageName == "net_wifi"){
+		sV("netwifiRf","IDS_RE_REFRESH");
+        if(lanPage != "set_guid"){sH("NetWifit","IDS_NET_WIFI");}
+        sH("refwifilist","IDS_NET_REWIFI");sH("netWifiList","IDS_NET_WIFILIST");sH("netwifi_is","IDS_NET_WIFIIS");sH("netwifi_no","IDS_NET_WIFINO");sV("NWifiSave","IDS_CRUISE_SAVE");sH("wifiP","IDS_NET_WIFIP");sOH("netwifiP",0,"IDS_NET_WIFIPNO");sH("wifiyzsty","IDS_NET_WIFIYZSTY");sOH("netwifityp",0,"IDS_NET_WIFIOPEN");sOH("netwifityp",1,"IDS_NET_WIFIPSK");
+		sOH("netwifityp",2,"IDS_NET_WIFIAUTO");sH("wifikgs","IDS_NET_WIFIKGS");sOH("netwififom",0,"IDS_NET_WIFI16");sOH("netwififom",1,"IDS_NET_WIFIASCII");sH("wifiselec","IDS_NET_WIFISELEC");sH("netwifiIsEb","IDS_NET_WIFIISEB");
+		sH("wifiPSK1", "IDS_NET_WIFIPSK1"); sH("wifiPSK2", "IDS_NET_WIFIPSK2"); sH("wifiPSK3", "IDS_NET_WIFIPSK3"); sH("wifiPSK4", "IDS_NET_WIFIPSK4"); sH("wifiPSDK", "IDS_NET_WIFIPSK"); sH("netwifijmfs", "IDS_NET_STYPE"); sH("netwifixhqd", "IDS_NET_WIFISIGSTR"); sH("netSSID", "IDS_NET_SSID");
+        //sH("netWifiPwdTip", "IDS_PATH_FTP_PWD_TIP");
+        document.getElementById("netWifiPwdTip").innerHTML = lg.get("IDS_PATH_FTP_PWD_TIP") + " ~ ! @ # % ^ * ( ) _ + { } : \"| &lt; > ? ` - ; ' \\ , . /";
+        if((gVar_first.modelName == "FosBaby") && (isSoftAPMode == 1)){
+            //$("#refwifilist").css("display", "none");
+        }
+		if (Qqx == 0) {$("#NWifiSave").remove();}
+		else if (Qqx == 1) $("#NWifiSave").remove();
+		else{}
+	}else if(pageName == "net_port"){
+		sV("netportRf","IDS_RE_REFRESH");sV("netportSave","IDS_CRUISE_SAVE");sH("NetPortS","IDS_NET_PORT");sH("SysiphttpP","IDS_SYS_HTTPP");sH("SysipMedioP","IDS_SYS_MEDIOP");sH("SysipHttpsPort","IDS_SYS_HTTPS");sH("SysipOnvifPort","IDS_SYS_ONVIF");
+		if (Qqx == 0) $("#netportSave").remove();
+		else if (Qqx == 1) $("#netportSave").remove();
+		else{}
+		if (gVar_first.onvifFlag == 0) {
+            //$("#netonviftab").remove();
+            $("#netonviftab").css("display", "none");
+        }
+		
+	}else if(pageName == "net_p2p"){
+		sV("netp2pRf","IDS_RE_REFRESH");sV("netp2pSave","IDS_CRUISE_SAVE");
+		sH("NetP2PTitle","IDS_NET_P2P");
+		sH("NetUID","IDS_NET_UID")
+		//sH("NetPortS","IDS_NET_PORT");sH("SysiphttpP","IDS_SYS_HTTPP");sH("SysipMedioP","IDS_SYS_MEDIOP");sH("SysipHttpsPort","IDS_SYS_HTTPS");sH("SysipOnvifPort","IDS_SYS_ONVIF");
+		sH("divSysipP2P","IDS_SYSPORT_P2P_ENABLE");sH("thP2PPort","IDS_SYSPORT_P2P_PORT");
+		if (Qqx == 0) $("#netp2pSave").remove();
+		else if (Qqx == 1) $("#netp2pSave").remove();
+		else{}
+	}else if(pageName == "net_upnp"){
+		sV("netupnpRf","IDS_RE_REFRESH");sV("SysipSave","IDS_CRUISE_SAVE");sH("NetupnpS","IDS_NET_UPNP");sH("SysipINUPnP","IDS_SYS_INUPNP");sH("SysipIs","IDS_AV_IS");sH("SysipNo","IDS_AV_NO");
+		if (Qqx == 0) $("#SysipSave").remove();
+		else if (Qqx == 1) $("#SysipSave").remove();
+		else{}
+		
+	}else if(pageName == "net_cloud"){
+		sH("legNetCloud","IDS_NET_CLOUD");sV("netcloudRf","IDS_RE_REFRESH");sV("NetCloudSave","IDS_CRUISE_SAVE");sH("netcloudisEnb","IDS_NET_CLOUDEABL");sH("netCloudState","IDS_CLOUD_STATE");sH("netCarryoperator","IDS_CARRY_OPERATOR");sH("netAuthorization","IDS_AUTHORIZATION");
+		sH("netAuthorizaCode","IDS_AUTHORIZACODE");sH("netStateInfo","IDS_STATEINFO");sH("netTotalValume","IDS_TOTALVALUM");sH("netUsedValume","IDS_USEDVALUM");
+        sH("netRemainVolume", "IDS_CLOUD_REMAIN_SPACE");
+        sH("btnopennetAuthor","IDS_OPEN_AHTHOR_PAGE");sH("btnnetStateInfo","IDS_RFSTATEINFO");sH("btnnetcloudtest","IDS_CLOUDTEST");
+        sH("netcloudnull","IDS_NET_WIFIPNO");sH("netcloudbaidu","IDS_CLOUD_BAIDU");
+        sH("netAuthoriza_CodeTip","IDS_NET_AUTHOR_CODETIP");
+        sH("getaccess_Token","IDS_NET_BTN_GETTOKEN");
+        sH("accessToken","IDS_NET_ACCESS_TOKEN");
+        sH("divNetCloudTips", "IDS_NET_CLOUD_TIPS");
+        if(gVar_first.N_language == 2){  // for foreign
+            $("#netcloudbaidu").remove();
+        }else{  // for china
+            $("#netcloudDropbox").remove();
+        }
+	}else if(pageName == "net_push"){
+        sH("legNetPush","IDS_NET_PUSH");sV("netpushRf","IDS_RE_REFRESH");sV("netpushSave","IDS_CRUISE_SAVE");sH("netpushEnb","IDS_NET_CLOUD_PUSH_EABL");
+        sH("netpushstate","IDS_NET_PUSHSTATE");sH("netpushserver","IDS_NET_PUSHSERVER");
+        sH("pushtest","IDS_BS_TEST");sH("netpushtest","IDS_NET_PUSHTEST");
+        sH("noserver","IDS_NET_WIFIPNO");
+        sH("baiduserver","IDS_CLOUD_BAIDU");  
+	}else if(pageName == "rc_alarm"){
+		sV("rcalarmRf","IDS_RE_REFRESH");sV("RcAlarmSave","IDS_CRUISE_SAVE");sH("RcAlarmt","IDS_RC_ALARM");sH("RcAmPreTime","IDS_RC_PRETIME");sH("rcalisEnb","IDS_RC_ALISENB");sH("AmRcPreTime","IDS_RC_AMPRETIME");
+		//sH("rcAlarmTips", "IDS_RC_ALARMTIPS");
+		if (Qqx == 0) $("#RcAlarmSave").remove();
+		else if (Qqx == 1) $("#RcAlarmSave").remove();
+		else{}
+	}else if(pageName == "rc_localalarm"){
+        sV("rclocalalarmRf", "IDS_RE_REFRESH"); sV("rcLocalAlarmSave", "IDS_CRUISE_SAVE"); sH("RcLocalAlarmLeg", "IDS_RC_LOCAL_ALARM"); sH("rcLocalAListEnb", "IDS_RC_LOCAL_ALARM_ENABLE"); sH("rcLocalAlarmTimeT", "IDS_RC_LOCAL_ALARM_TIME"); /*sH("rcSoundAlarmAsPC", "IDS_RC_SOUNDALARM_AS_PC"); sH("AvALCNoTS", "IDS_AV_NO"); sH("AvALCIsTS", "IDS_AV_IS");*/ sH("rcLocalAlarmTips", "IDS_RC_LOCAL_ALARM_TIPS");
+        
+	    if (Qqx == 0) $("#rcLocalAlarmSave").remove();
+		else if (Qqx == 1) $("#rcLocalAlarmSave").remove();
+		else{}
+	}
+	
+	
+	else if(pageName == "rc_sdmanage"){
+	    sV("rcsdmanageRf", "IDS_RE_REFRESH");
+	    var ipArr = gVar_first.ip.split(".");
+        if (ipArr.length == 4 && ipArr[0] > 0 && ipArr[0] <= 255 && ipArr[1] >= 0 && ipArr[1] <= 255 && ipArr[2] >= 0 && ipArr[2] <= 255 && ipArr[3] >= 0 && ipArr[3] <= 255 && ipArr[3] != "" && ipArr[0] != "" && ipArr[1] != "" && ipArr[2] != "") {
+            document.getElementById("divSDManageMAC").innerHTML = lg.get("IDS_PATH_FTPADDR") + ": [ ftp://" + gVar_first.ip + ":50021 ]. " + lg.get("IDS_SD_MANAGER_MAC_TIPS");
+        }
+        sH("legRcSDmanage", "IDS_RC_SDCARD_MANAGE")
+        sH("IDS_RC_SDSTATE", "IDS_DEV_SDSTATE"); sH("IDS_RC_SDFS", "IDS_DEV_SDFS"); sH("IDS_RC_SDTS", "IDS_DEV_SDTS"); sH("btnDevStateSDManage", "IDS_DEV_STATE_SD_MANAGE");
+	    sH("rcsdtips","IDS_RC_SDTIPS");
+	    if (Qqx == 0) $("#rcLocalAlarmSave").remove();
+		else if (Qqx == 1) $("#rcLocalAlarmSave").remove();
+		else{}	
+	}
+	
+		else if(pageName == "rc_plan"){
+	    sV("rcplanRf","IDS_RE_REFRESH");
+	    sV("rcPlanSave","IDS_CRUISE_SAVE");
+        sH("legRcPlan", "IDS_RC_PLAN");
+        sH("Rcplan_Enable","IDS_RC_PLANENABLE");
+        sH("RcPumpFrame", "IDS_RC_PUMPFRME");
+        sH("rcPFNoTS", "IDS_AV_NO");
+        sH("rcPFIsTS", "IDS_AV_IS");
+	    sH("RcRecordLev","IDS_AV_FRATE");
+	    sH("RcFullModle","IDS_RC_FULLMODLE");
+	    
+	    sH("RcEnAudio","IDS_RC_ENAUDIO");
+	    sH("enableaudio","IDS_AV_IS");sH("disableaudio","IDS_AV_NO");
+
+	    sH("RcdStream", "IDS_LOGIN_BITRATE");
+	    sH("rsMain", "IDS_CODE_STREAM_01"); sH("rsSub", "IDS_CODE_STREAM_02");
+
+	    sH("rcfull_cover","IDS_RC_FULLCOVER");sH("rcfull_stop","IDS_RC_FULLSTOP");
+
+	    sH("RTAmVCBitmap", "IDS_RC_BITMAP");
+	    
+	    if (gVar_first.sdFlag == 0) {
+	        sH("rcPlanNotice", "IDS_RCPLAN_NOSD_NOTICE");
+	    }else{
+	        sH("rcPlanNotice", "IDS_RCPLAN_NOTICE");
+	    }
+	    sH("rcPlanNotice2", "IDS_RCPLAN_TIP4");
+	    if (Qqx == 0) $("#rcLocalAlarmSave").remove();
+		else if (Qqx == 1) $("#rcLocalAlarmSave").remove();
+		else{}	
+	}
+	
+	else if(pageName == "rc_path"){
+	    sV("rcpathRf", "IDS_RE_REFRESH"); sV("rcPathSave", "IDS_CRUISE_SAVE"); sH("RcVPPath", "IDS_RC_VPRATH"); sH("rcPathVP", "IDS_RC_SETPATH"); sH("rcPathSDCard", "IDS_AV_SDCARD"); /*sH("rcPathSDir","IDS_AV_SFOLDER");*/$("#rcPathSDCardF").html(lg.get("SDSTATE_TEST").split(",")[0]); sH("rcPathlo", "IDS_RC_PATHLO"); sH("rcPathps2", "IDS_RC_PATHPS2"); sH("rcPathNote", "IDS_SYS_CARE");
+        sH("rcPathSDAndCloud", "IDS_SD_AND_CLOUD");
+	    sH("btnSelPath","IDS_RC_PATH_SELECT_PATH");
+	    sH("divRcPathCloudTips", "IDS_RC_CLOUD_TIPS");
+        sH("divRcPathSoftTips", "IDS_SOFTAP_NO_FTP_CLOUD_TIPS");
+	    if (gVar_first.sdFlag == 0) {
+	        sH("rcPathps1", "IDS_RC_PATHPS1_NOSDCARD");       
+	    }else{
+	        sH("rcPathps1", "IDS_RC_PATHPS1");
+	    }
+	    
+	    
+		if (Qqx == 0) $("#rcPathSave").remove();
+		else if (Qqx == 1) $("#rcPathSave").remove();
+		else{}
+	}else if(pageName == "sys_dr"){
+		sH("ParemeteI","IDS_SYS_DR");sH("PareDraw","IDS_SYS_PDRAW");sH("sysdrWord1","IDS_SYS_WORD1");sH("sysdrWord2","IDS_SYS_WORD2");sH("sysdrWord3","IDS_SYS_WORD3");sH("sysdrWord4","IDS_SYS_WORD4");sH("sysPathw","IDS_SYS_PATHW");sH("sysdrCare","IDS_SYS_CARE");sV("PareImport","IDS_SYS_DROK");
+	}else if(pageName == "sys_hf"){
+		sH("RestoreFact","IDS_SYS_HF");sH("SysReFact","IDS_SYS_HF");sH("syshfWord5","IDS_SYS_WORD5");
+	}else if(pageName == "sys_cq"){
+		sH("RestartSys","IDS_SYS_CQ");sH("syscqRest","IDS_SYS_CQ");sH("syscqWord6","IDS_SYS_WORD6");
+	}else if(pageName == "sys_updata"){
+		sH("Sysupdates","IDS_SYS_UPDATE");sV("upPareDraw","IDS_SYS_UPDATE");
+		sH("sysUpateTip", "IDS_SYS_UPDATE_TIP"); sH("sys_upload", "IDS_SYS_UPLOAD");
+		$("#sysupresult").prepend(lg.get("IDS_SYS_UPRESULT"));
+	}else if(pageName == "sys_patch"){
+		sH("Syspatch","IDS_SYS_UPDATE_PATHCH");sV("upPareDraw_patch","IDS_SYS_BTN_INSTALL_PATCH");
+		sH("sysUpateTip_patch", "IDS_SYS_UPDATE_TIP_PATCH"); sH("sys_upload_patch", "IDS_SYS_UPLOAD");
+		sV("sys_RemovePatch","IDS_SYS_REMOVEPATCH");
+		$("#sysupresult_patch").prepend(lg.get("IDS_SYS_UPRESULT"));
+	}
+	else if(pageName == "child_music"){
+        sV("childmusicRf", "IDS_RE_REFRESH"); sH("btn_music_subN", "IDS_BS_DEL"); sH("btn_music_del_list", "IDS_BS_DEL"); sH("btn_music_addN", "IDS_BS_ADD"); sH("btn_music_add_list", "IDS_BS_ADD"); sH("tit_child_music", "IDS_CHILD_MUSIC_LIST");
+        sH("leg_child_music", "IDS_CHILD_MUSIC_MUSIC"); sH("leg_child_music_list", "IDS_LEFT_PLAY_LIST"); sH("btn_music_move_up", "IDS_PTZ_SUBFO"); sH("btn_music_move_down", "IDS_PTZ_SUBDEP"); sH("th_music_list", "IDS_LEFT_PLAY_LIST"); sH("btn_music_list_OK", "IDS_REBOOT_OK"); sH("btn_music_list_CAN", "IDS_REBOOT_CANCLE");
+        sH("th_music_path", "IDS_CHILD_MUSIC_SOURCE");
+        sH("divMusicMaxTips", "IDS_CHILD_MUSIC_DEFAULT_TIPS");
+        if (Qqx == 0) {  $("#btn_music_addN").remove(); $("#btn_music_subN").remove(); }
+        else if (Qqx == 1) { $("#btn_music_addN").remove(); $("#btn_music_subN").remove(); }
+        else { }
+    }
+	
+}

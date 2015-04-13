@@ -1,0 +1,43 @@
+Xsession: X session started for pi at Mon Feb 16 14:02:58 UTC 2015
+localuser:pi being added to access control list
+Obt-Message: Xinerama extension is not present on the server
+
+** (lxpolkit:2447): WARNING **: Unable to register authentication agent: GDBus.Error:org.freedesktop.PolicyKit1.Error.Failed: Cannot determine user of subject
+
+(lxpolkit:2447): GLib-GObject-WARNING **: Attempt to add property GtkSettings::gtk-label-select-on-focus after class was initialised
+
+(lxpolkit:2447): GLib-GObject-WARNING **: Attempt to add property GtkSettings::gtk-button-images after class was initialised
+** Message: x-terminal-emulator has very limited support, consider choose another terminal
+** Message: x-terminal-emulator has very limited support, consider choose another terminal
+
+** (lxpanel:2440): WARNING **: The directory '~/Templates' doesn't exist, ignoring it
+
+** (pcmanfm:2444): WARNING **: The directory '~/Templates' doesn't exist, ignoring it
+
+(lxpanel:2440): GLib-GObject-WARNING **: Attempt to add property GtkSettings::gtk-can-change-accels after class was initialised
+
+(lxpanel:2440): GLib-GObject-WARNING **: Attempt to add property GtkSettings::gtk-menu-popup-delay after class was initialised
+
+(lxpanel:2440): GLib-GObject-WARNING **: Attempt to add property GtkSettings::gtk-menu-popdown-delay after class was initialised
+
+(lxpanel:2440): GLib-GObject-WARNING **: Attempt to add property GtkSettings::gtk-menu-images after class was initialised
+
+(lxpanel:2440): GLib-GObject-WARNING **: Attempt to add property GtkSettings::gtk-label-select-on-focus after class was initialised
+
+(lxpanel:2440): GLib-GObject-WARNING **: Attempt to add property GtkSettings::gtk-button-images after class was initialised
+Openbox-Message: Unable to find a valid menu file "/usr/share/lxde/openbox/menu.xml"
+
+(pcmanfm:2444): GLib-GObject-WARNING **: Attempt to add property GtkSettings::gtk-can-change-accels after class was initialised
+
+(pcmanfm:2444): GLib-GObject-WARNING **: Attempt to add property GtkSettings::gtk-menu-popup-delay after class was initialised
+
+(pcmanfm:2444): GLib-GObject-WARNING **: Attempt to add property GtkSettings::gtk-menu-popdown-delay after class was initialised
+
+(pcmanfm:2444): GLib-GObject-WARNING **: Attempt to add property GtkSettings::gtk-label-select-on-focus after class was initialised
+
+(pcmanfm:2444): GLib-GObject-WARNING **: Attempt to add property GtkSettings::gtk-menu-images after class was initialised
+
+** (zenity:2596): WARNING **: Error retrieving accessibility bus address: org.freedesktop.DBus.Error.ServiceUnknown: The name org.a11y.Bus was not provided by any .service files
+
+XIO:  fatal IO error 11 (Resource temporarily unavailable) on X server ":0"
+      after 7685 requests (7681 known processed) with 0 events remaining.

@@ -1,0 +1,32 @@
+language: python
+python:
+  - 2.6
+  - 2.7
+  - 3.3
+env:
+  global:
+  - secure: USjLDneiXlVvEjkUVqTt+LBi0XJ4QhkRcJzqVXA9gEau1NTjAkNTPmHjUbOygp0dkfoV0uWrZKCw6fL1g+HJgWl0vHeHzcNl4mUkA+OwkGFHgaeIhvUfnyyJA8P3Zm21XHC+ehzMpEFN5fVNNhREjnRj+CXMc0FgA6knwBRobu4=
+  - secure: HFTL8UN1GkY6/GqygpgzWpYdWvhXRN8uTO//AgGzSg0FkHuDFcxRJigwCNI3PRImFkkRRVmUJDw18dolkx2h60w0wqD9K09DFpPTYfwmF9Bql+O3hjG9Ep9iu+CREwQTm2u66f36Q+pjaDiHWmr0kgi0zUTD7w0UvlN7gdFCMxk=
+  - secure: L3nD/BEOAqGTmd8Va9bQ8MZL5gbiNWuy9TvIxCmQ5bfdlAAdq371oqXpuy90JftaloapktjjmuSrsiszWgMMB/TGDO45h1LrYQEMEmA/4JN/uly3lUk8th9Rig+blKTG0q6X6GsX8UWA0xVeLtXzkddpNAOBgpeqb33pWmFkdcM=
+  - secure: OdVG7LVqQ13RQxxEUPEMHZb0seoZUNzq+oy/K1qe4ubcupqiMh47pxnDcei6vkVpMn8QIvbG9lcV0oOREqJ+m+g3wUA5JX95liFqLNsmLMMVgP3yjYDf7KoNHckA5H5BwIYO/AFCBdwyNN0h439kwSciCbIr70UModVkvdWoFLI=
+  - secure: RJgKNXCxQZxjkxqinv6x96hGZvfJpjOIaRpH9YUJrCZeqLbS1FUOvTWkze5nZQw4DL14zBmpGZXYC9twSYvscEGNnaEhxDKygiFfLosERRa65N57kphD0AsGNe9YAhWUGDbCxnZ0PYHc48DYxX+jPxqsQ/2bxZbXVoJg4pZFP3o=
+  - SCREEN_NAME=__twython__
+  - PROTECTED_TWITTER_1=TwythonSecure1
+  - PROTECTED_TWITTER_2=TwythonSecure2
+  - TEST_TWEET_ID=332992304010899457
+  - TEST_LIST_SLUG=team
+  - TEST_LIST_OWNER_SCREEN_NAME=twitterapi
+  - ACCESS_TOKEN_B64=U2FsdGVkX18QdBhvMNshM4PGy04tU3HLwKP+nNSoNZHKsvGLjELcWEXN2LIu/T+yngX1vGONf9lo14ElnfS4k7sfhiru8phR4+rZuBVP3bDvC2A6fXJuhuLqNhBrWqg32WQewvxLWDWBoKmnvRHg5b74GHh+IN/12tU0cBF2HK8=
+install: 
+  - pip install -r requirements.txt
+  - if [[ $TRAVIS_PYTHON_VERSION == '2.6' ]]; then pip install unittest2; fi
+script: nosetests -v -w tests/ --logging-filter="twython" --with-cov --cov twython --cov-config .coveragerc --cov-report term-missing
+notifications:
+  email: false
+branches:
+  only:
+    - master
+after_success:
+  - coveralls
+before_script:
+  - export ACCESS_TOKEN=$(echo $ACCESS_TOKEN_B64 | openssl enc -d -aes-256-cbc -A -a -pass env:ACCESS_TOKEN_PASS)
