@@ -6,7 +6,9 @@ All other files were either from the roomba's parents: The Labroratory for Telec
 or various OS/apt-get installations.
 
 To access the roomba's ethernet directly, you must connect to the 10.99.99.0/24 network.
+
 roomba's pi: 10.99.99.1
+
 roomba's webcam: 10.99.99.50
 
 [EDIT: I just realized this networking configuration will be OS install dependant, this is how it was set up for us]
